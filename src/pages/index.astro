@@ -3,12 +3,24 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Quiz from '../components/Quiz';
-import ContactForm from '../components/ContactForm';
+import Quiz from '../components/Quiz.astro';
+import ContactForm from '../components/ContactForm.astro';
+import OptimizedImage from '../components/OptimizedImage.astro';
 import '../styles/global.css';
 
-const baseUrl = import.meta.env.BASE_URL;
-const imagePath = (file: string) => `${baseUrl}images/${file}`;
+const assetBase = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const imagePath = (file: string) => `${assetBase}images/${file}`;
+
+const imageMeta = {
+  fotoSessao1: { src: imagePath('foto_sessao_1.jpg'), width: 900, height: 1200 },
+  fotoBernardo: { src: imagePath('foto_bernardo.jpg'), width: 600, height: 631 },
+  fotoEspaco1: { src: imagePath('foto_espaco_1.jpg'), width: 900, height: 1200 },
+  fotoEspaco2: { src: imagePath('foto_espaco_2.jpg'), width: 900, height: 1200 },
+  fotoSessao2: { src: imagePath('foto_sessao_2.jpg'), width: 900, height: 1200 },
+  fotoMapa: { src: imagePath('foto_mapa.jpg'), width: 692, height: 600 },
+};
 ---
 
 <BaseLayout>
@@ -47,7 +59,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
         </div>
         <div class="hero__visual">
           <div class="hero__img-wrap">
-            <img src={imagePath('foto_sessao_1.jpg')} alt="Bernardo a acompanhar sessão de treino personalizado no Areeiro" width="600" height="720" loading="eager" />
+            <OptimizedImage src={imageMeta.fotoSessao1.src} alt="Bernardo a acompanhar sessão de treino personalizado no Areeiro" width={imageMeta.fotoSessao1.width} height={imageMeta.fotoSessao1.height} loading="eager" fetchpriority="high" />
             <div class="hero__badge">
               <span>Areeiro, Lisboa</span>
               <small>Estúdio privado · Online · App</small>
@@ -111,6 +123,8 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
             {
               id: 's-presencial',
               img: imagePath('foto_sessao_4.jpg'),
+              width: 900,
+              height: 1200,
               alt: 'Sessão de personal training presencial no estúdio do Areeiro',
               badge: 'Individual ou dupla', badgeCor: '#4A7A2E',
               tag: 'No estúdio', emoji: '🏋️',
@@ -121,6 +135,8 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
             {
               id: 's-online',
               img: imagePath('foto_online.jpg'),
+              width: 1000,
+              height: 1221,
               alt: 'Sessão de personal training online por videochamada',
               badge: 'Sem deslocação', badgeCor: '#1971C2',
               tag: 'Videochamada', emoji: '💻',
@@ -131,6 +147,8 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
             {
               id: 's-app',
               img: imagePath('foto_app.jpg'),
+              width: 533,
+              height: 800,
               alt: 'App de treino personalizado com plano e vídeos',
               badge: 'Mais acessível', badgeCor: '#2F9E44',
               tag: 'App + WhatsApp', emoji: '📱',
@@ -141,6 +159,8 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
             {
               id: 's-outdoor',
               img: imagePath('foto_outdoor.jpg'),
+              width: 1000,
+              height: 1258,
               alt: 'Treino outdoor num parque de Lisboa',
               badge: 'Individual ou grupo', badgeCor: '#E8590C',
               tag: 'Ao ar livre', emoji: '🌿',
@@ -151,6 +171,8 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
             {
               id: 's-laboral',
               img: imagePath('foto_laboral.jpg'),
+              width: 1000,
+              height: 750,
               alt: 'Ginástica laboral em empresa com grupo de colaboradores',
               badge: 'Para empresas', badgeCor: '#2F4A35',
               tag: 'Empresas', emoji: '🏢',
@@ -161,7 +183,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
           ].map(f => (
             <article class="formato-card fade-in" id={f.id}>
               <div class="formato-card__img">
-                <img src={f.img} alt={f.alt} loading="lazy" />
+                <OptimizedImage src={f.img} alt={f.alt} width={f.width} height={f.height} />
                 <span class="formato-badge" style={`background:${f.badgeCor}`}>{f.badge}</span>
                 <span class="formato-tag">{f.tag}</span>
               </div>
@@ -190,7 +212,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
       </div>
     </section>
 
-    <!-- ═══════════════════════ QUIZ — React Island ═══════════════════════ -->
+    <!-- ═══════════════════════ QUIZ ═══════════════════════ -->
     <section class="quiz-section" id="quiz" aria-labelledby="quiz-titulo">
       <div class="container">
         <div class="quiz-section__header">
@@ -199,7 +221,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
           <p>Responda a algumas perguntas — leva menos de 1 minuto.</p>
         </div>
         <div class="quiz-section__card">
-          <Quiz client:load />
+          <Quiz />
         </div>
       </div>
     </section>
@@ -335,7 +357,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
     <section class="sobre" id="sobre" aria-labelledby="sb-titulo">
       <div class="container sobre__inner">
         <div class="sobre__visual">
-          <img src={imagePath('foto_bernardo.jpg')} alt="Bernardo Lima, personal trainer no Areeiro, Lisboa" loading="lazy" />
+          <OptimizedImage src={imageMeta.fotoBernardo.src} alt="Bernardo Lima, personal trainer no Areeiro, Lisboa" width={imageMeta.fotoBernardo.width} height={imageMeta.fotoBernardo.height} />
           <div class="sobre__stats">
             <div class="stat"><strong>13+</strong><span>Anos de experiência</span></div>
             <div class="stat"><strong>+100</strong><span>Clientes acompanhados</span></div>
@@ -393,7 +415,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
           ].map(t => (
             <blockquote class="testemunho fade-in">
               <div class="testemunho__header">
-                <img src={t.av} alt={t.nome} class="testemunho__avatar" width="52" height="52" loading="lazy" />
+                <OptimizedImage src={t.av} alt={t.nome} class="testemunho__avatar" width="100" height="100" />
                 <div>
                   <strong>{t.nome}</strong>
                   <div class="testemunho__badges">
@@ -414,9 +436,9 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
     <section class="espaco" id="espaco" aria-labelledby="es-titulo">
       <div class="container espaco__inner">
         <div class="espaco__galeria">
-          <img src={imagePath('foto_espaco_1.jpg')} alt="Vista geral do estúdio de personal training no Areeiro" loading="lazy" class="espaco__principal" />
-          <img src={imagePath('foto_espaco_2.jpg')} alt="Área de treino com halteres e equipamentos" loading="lazy" />
-          <img src={imagePath('foto_sessao_2.jpg')} alt="Bernardo em sessão de acompanhamento no estúdio" loading="lazy" />
+          <OptimizedImage src={imageMeta.fotoEspaco1.src} alt="Vista geral do estúdio de personal training no Areeiro" width={imageMeta.fotoEspaco1.width} height={imageMeta.fotoEspaco1.height} class="espaco__principal" />
+          <OptimizedImage src={imageMeta.fotoEspaco2.src} alt="Área de treino com halteres e equipamentos" width={imageMeta.fotoEspaco2.width} height={imageMeta.fotoEspaco2.height} />
+          <OptimizedImage src={imageMeta.fotoSessao2.src} alt="Bernardo em sessão de acompanhamento no estúdio" width={imageMeta.fotoSessao2.width} height={imageMeta.fotoSessao2.height} />
         </div>
         <div class="espaco__texto">
           <p class="section-label">O espaço</p>
@@ -440,7 +462,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
         <div class="localizacao__inner">
           <div class="localizacao__mapa">
             <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer">
-              <img src={imagePath('foto_mapa.jpg')} alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" loading="lazy" />
+              <OptimizedImage src={imageMeta.fotoMapa.src} alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" width={imageMeta.fotoMapa.width} height={imageMeta.fotoMapa.height} />
             </a>
           </div>
           <div class="localizacao__info">
@@ -515,8 +537,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
           </div>
         </div>
         <div class="contacto__form">
-          <!-- React Island — hidratado no cliente -->
-          <ContactForm client:load />
+          <ContactForm />
         </div>
       </div>
     </section>
