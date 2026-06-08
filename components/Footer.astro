@@ -1,0 +1,122 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="footer" role="contentinfo">
+  <div class="container footer__inner">
+
+    <div class="footer__marca">
+      <a href="#inicio" class="footer__logo" aria-label="Voltar ao topo">
+        <img src={`${import.meta.env.BASE_URL}images/logo_tbl.jpg`} alt="TBL" width="32" height="32" class="footer__logo-img" />
+        <span class="logo-text">
+          <strong>Bernardo</strong>
+          <em>Personal Training</em>
+        </span>
+      </a>
+      <p>Personal training no Areeiro, Lisboa — presencial, online, app, outdoor e empresas.</p>
+      <address>Av. Almirante Gago Coutinho, 1000-015 Lisboa</address>
+    </div>
+
+    <nav class="footer__nav" aria-label="Formatos de treino">
+      <h3>Formatos</h3>
+      <ul role="list">
+        <li><a href="#s-presencial">Presencial</a></li>
+        <li><a href="#s-online">Online</a></li>
+        <li><a href="#s-app">App</a></li>
+        <li><a href="#s-outdoor">Outdoor</a></li>
+        <li><a href="#s-laboral">Empresas</a></li>
+      </ul>
+    </nav>
+
+    <div class="footer__contactos">
+      <h3>Contactos</h3>
+      <ul role="list">
+        <li><a href="tel:+351969698944">+351 969 698 944</a></li>
+        <li><a href="mailto:bernardo.lima93@gmail.com">bernardo.lima93@gmail.com</a></li>
+        <li><a href="https://www.instagram.com/tbl.treinos" target="_blank" rel="noopener noreferrer">@tbl.treinos</a></li>
+        <li><a href="https://wa.me/351969698944" target="_blank" rel="noopener noreferrer">WhatsApp</a></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="container footer__bottom">
+    <p>Este site não recolhe dados pessoais sem consentimento.</p>
+    <p>© <span id="anoAtual"></span> TBL Studio & Personal Training by Bernardo Lima · Areeiro, Lisboa</p>
+  </div>
+</footer>
+
+<style>
+.footer {
+  background: var(--verde-esc);
+  color: rgba(255,255,255,.75);
+  padding-block: 3.5rem 2rem;
+}
+.footer__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  margin-bottom: 1.5rem;
+}
+.footer__logo {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  margin-bottom: 1rem;
+  text-decoration: none;
+}
+.footer__logo-img {
+  width: 32px; height: 32px;
+  border-radius: 7px;
+  object-fit: cover;
+  opacity: .85;
+}
+.footer__logo .logo-text strong { color: #fff; }
+.footer__logo .logo-text em     { color: rgba(255,255,255,.45); }
+.footer__marca p {
+  font-size: .8125rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,.6);
+  max-width: 34ch;
+  margin-bottom: .75rem;
+}
+.footer__marca address { font-size: .75rem; color: rgba(255,255,255,.35); }
+.footer__nav h3,
+.footer__contactos h3 {
+  font-size: .625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.3);
+  margin-bottom: .875rem;
+}
+.footer__nav ul,
+.footer__contactos ul {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+.footer__nav a,
+.footer__contactos a {
+  font-size: .8125rem;
+  color: rgba(255,255,255,.65);
+  text-decoration: none;
+  transition: color .15s;
+}
+.footer__nav a:hover,
+.footer__contactos a:hover { color: #fff; }
+.footer__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: .375rem;
+}
+.footer__bottom p { font-size: .6875rem; color: rgba(255,255,255,.3); }
+
+@media (min-width: 640px) {
+  .footer__inner { grid-template-columns: 2fr 1fr 1fr; }
+  .footer__marca { grid-column: auto; }
+  .footer__bottom { flex-direction: row; justify-content: space-between; }
+}
+</style>
