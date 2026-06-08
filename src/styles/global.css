@@ -38,6 +38,7 @@ body {
   background: var(--branco);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
 }
 img { max-width: 100%; height: auto; display: block; }
 a { color: inherit; text-decoration: none; }
@@ -113,8 +114,10 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 2px solid transparent;
   line-height: 1;
   transition: all .2s;
-  white-space: nowrap;
+  text-align: center;
+  white-space: normal;
   min-height: 48px;
+  max-width: 100%;
   text-decoration: none;
 }
 .btn--primary  { background: var(--verde); color: #fff; border-color: var(--verde); }
@@ -205,6 +208,11 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 @media (min-width: 768px) {
   .whatsapp-fab { bottom: 1.75rem; right: 1.75rem; width: 56px; height: 56px; }
+}
+
+@media (max-width: 420px) {
+  .container { padding-inline: 1rem; }
+  .btn { width: 100%; padding-inline: 1rem; }
 }
 
 /* ── Print ── */
