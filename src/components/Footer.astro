@@ -60,7 +60,7 @@ const imagePath = (file: string) => `${assetBase}images/${file}`;
 }
 .footer__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding-bottom: 2.5rem;
   border-bottom: 1px solid rgba(255,255,255,.1);
@@ -73,11 +73,12 @@ const imagePath = (file: string) => `${assetBase}images/${file}`;
   margin-bottom: 1rem;
   text-decoration: none;
 }
-.footer__logo-img {
+:global(.footer__logo-img) {
   width: 32px; height: 32px;
   border-radius: 7px;
   object-fit: cover;
   opacity: .85;
+  flex-shrink: 0;
 }
 .footer__logo .logo-text strong { color: #fff; }
 .footer__logo .logo-text em     { color: rgba(255,255,255,.45); }
@@ -109,6 +110,7 @@ const imagePath = (file: string) => `${assetBase}images/${file}`;
   font-size: .8125rem;
   color: rgba(255,255,255,.65);
   text-decoration: none;
+  overflow-wrap: anywhere;
   transition: color .15s;
 }
 .footer__nav a:hover,
