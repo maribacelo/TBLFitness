@@ -107,74 +107,84 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
         <p class="section-intro">Cinco formas de trabalhar, cada uma pensada para um contexto diferente. Em todas as sessões com o Bernardo, uma hora completa.</p>
 
         <div class="formatos__grid">
-          {[
-            {
-              id: 's-presencial',
-              img: `${baseUrl}images/foto_sessao_4.jpg`,
-              alt: 'Sessão de personal training presencial no estúdio do Areeiro',
-              badge: 'Individual ou dupla', badgeCor: '#4A7A2E',
-              tag: 'No estúdio', emoji: '🏋️',
-              titulo: 'Personal Training Presencial',
-              desc: 'Sessões de 1 hora no estúdio privado do Areeiro. Individual ou em dupla — casal, amigos ou colegas.',
-              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20presencial.',
-            },
-            {
-              id: 's-online',
-              img: `${baseUrl}images/foto_online.jpg`,
-              alt: 'Sessão de personal training online por videochamada',
-              badge: 'Sem deslocação', badgeCor: '#1971C2',
-              tag: 'Videochamada', emoji: '💻',
-              titulo: 'Personal Training Online',
-              desc: 'Treino ao vivo por videochamada, 1 hora completa. Mesma estrutura do presencial, sem necessidade de deslocação.',
-              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20online.',
-            },
-            {
-              id: 's-app',
-              img: `${baseUrl}images/foto_app.jpg`,
-              alt: 'App de treino personalizado com plano e vídeos',
-              badge: 'Mais acessível', badgeCor: '#2F9E44',
-              tag: 'App + WhatsApp', emoji: '📱',
-              titulo: 'Plano por App',
-              desc: 'Plano mensal personalizado com vídeos explicativos. Treina no teu horário com acompanhamento por WhatsApp.',
-              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20por%20app.',
-            },
-            {
-              id: 's-outdoor',
-              img: `${baseUrl}images/foto_outdoor.jpg`,
-              alt: 'Treino outdoor num parque de Lisboa',
-              badge: 'Individual ou grupo', badgeCor: '#E8590C',
-              tag: 'Ao ar livre', emoji: '🌿',
-              titulo: 'Treino Outdoor',
-              desc: 'Sessões em espaços exteriores de Lisboa — individual ou em pequenos grupos. Mesmo nível de acompanhamento.',
-              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20outdoor.',
-            },
-            {
-              id: 's-laboral',
-              img: `${baseUrl}images/foto_laboral.jpg`,
-              alt: 'Ginástica laboral em empresa com grupo de colaboradores',
-              badge: 'Para empresas', badgeCor: '#2F4A35',
-              tag: 'Empresas', emoji: '🏢',
-              titulo: 'Ginástica Laboral',
-              desc: 'O Bernardo desloca-se às empresas. HIIT, mobilidade e activação em grupo. Clientes: Galp, Cofidis, Solinca, Time to Fitness, Pavilhão Municipal Casal Vistoso.',
-              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20gin%C3%A1stica%20laboral.',
-            },
-          ].map(f => (
-            <article class="formato-card fade-in" id={f.id}>
-              <div class="formato-card__img">
-                <img src={f.img} alt={f.alt} loading="lazy" />
-                <span class="formato-badge" style={`background:${f.badgeCor}`}>{f.badge}</span>
-                <span class="formato-tag">{f.tag}</span>
-              </div>
-              <div class="formato-card__body">
-                <h3>{f.emoji} {f.titulo}</h3>
-                <p>{f.desc}</p>
-                <a href={`https://wa.me/351969698944?text=${f.wa}`} target="_blank" rel="noopener noreferrer" class="formato-cta">
-                  Saber mais →
-                </a>
-              </div>
-            </article>
-          ))}
-        </div>
+  {[
+    {
+      id: 's-presencial',
+      img: imagePath('foto_sessao_4.jpg'),
+      alt: 'Sessão de personal training presencial no estúdio do Areeiro',
+      badge: 'Individual ou dupla',
+      badgeCor: '#4A7A2E',
+      tag: 'No estúdio',
+      emoji: '🏋️',
+      titulo: 'Personal Training Presencial',
+      desc: 'Sessões de 1 hora no estúdio privado do Areeiro. Individual ou em dupla — casal, amigos ou colegas.',
+      wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20presencial.',
+    },
+    {
+      id: 's-online',
+      img: imagePath('foto_online.jpg'),
+      alt: 'Sessão de personal training online por videochamada',
+      badge: 'Sem deslocação',
+      badgeCor: '#1971C2',
+      tag: 'Videochamada',
+      emoji: '💻',
+      titulo: 'Personal Training Online',
+      desc: 'Treino ao vivo por videochamada, 1 hora completa. Mesma estrutura do presencial, sem necessidade de deslocação.',
+      wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20online.',
+    },
+    {
+      id: 's-app',
+      img: imagePath('foto_app.jpg'),
+      alt: 'App de treino personalizado com plano e vídeos',
+      badge: 'Mais acessível',
+      badgeCor: '#2F9E44',
+      tag: 'App + WhatsApp',
+      emoji: '📱',
+      titulo: 'Plano por App',
+      desc: 'Plano mensal personalizado com vídeos explicativos. Treina no teu horário com acompanhamento por WhatsApp.',
+      wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20por%20app.',
+    },
+    {
+      id: 's-outdoor',
+      img: imagePath('foto_outdoor.jpg'),
+      alt: 'Treino outdoor num parque de Lisboa',
+      badge: 'Individual ou grupo',
+      badgeCor: '#E8590C',
+      tag: 'Ao ar livre',
+      emoji: '🌿',
+      titulo: 'Treino Outdoor',
+      desc: 'Sessões em espaços exteriores de Lisboa — individual ou em pequenos grupos. Mesmo nível de acompanhamento.',
+      wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20outdoor.',
+    },
+    {
+      id: 's-laboral',
+      img: imagePath('foto_laboral.jpg'),
+      alt: 'Ginástica laboral em empresa com grupo de colaboradores',
+      badge: 'Para empresas',
+      badgeCor: '#2F4A35',
+      tag: 'Empresas',
+      emoji: '🏢',
+      titulo: 'Ginástica Laboral',
+      desc: 'O Bernardo desloca-se às empresas. HIIT, mobilidade e activação em grupo. Clientes: Galp, Cofidis, Solinca, Time to Fitness, Pavilhão Municipal Casal Vistoso.',
+      wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20gin%C3%A1stica%20laboral.',
+    },
+  ].map(f => (
+    <article class="formato-card fade-in" id={f.id}>
+      <div class="formato-card__img">
+        <img src={f.img} alt={f.alt} loading="lazy" />
+        <span class="formato-badge" style={`background:${f.badgeCor}`}>{f.badge}</span>
+        <span class="formato-tag">{f.tag}</span>
+      </div>
+      <div class="formato-card__body">
+        <h3>{f.emoji} {f.titulo}</h3>
+        <p>{f.desc}</p>
+        <a href={`https://wa.me/351969698944?text=${f.wa}`} target="_blank" rel="noopener noreferrer" class="formato-cta">
+          Saber mais →
+        </a>
+      </div>
+    </article>
+  ))}
+</div>
 
         <!-- Avaliação CTA -->
         <div class="avaliacao-cta">
