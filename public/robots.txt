@@ -1,3 +1,3 @@
 User-agent: *
-Allow: /
-Sitemap: https://[DOMINIO]/sitemap.xml
+Allow: /TBLFitness/
+Sitemap: https://maribacelo.github.io/TBLFitness/sitemap.xml

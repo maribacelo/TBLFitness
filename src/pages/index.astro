@@ -6,6 +6,8 @@ import Footer from '../components/Footer.astro';
 import Quiz from '../components/Quiz';
 import ContactForm from '../components/ContactForm';
 import '../styles/global.css';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <BaseLayout>
@@ -44,7 +46,7 @@ import '../styles/global.css';
         </div>
         <div class="hero__visual">
           <div class="hero__img-wrap">
-            <img src="/images/foto_sessao_1.jpg" alt="Bernardo a acompanhar sessão de treino personalizado no Areeiro" width="600" height="720" loading="eager" />
+            <img src={`${baseUrl}images/foto_sessao_1.jpg" alt="Bernardo a acompanhar sessão de treino personalizado no Areeiro" width="600" height="720" loading="eager" />
             <div class="hero__badge">
               <span>Areeiro, Lisboa</span>
               <small>Estúdio privado · Online · App</small>
@@ -107,7 +109,7 @@ import '../styles/global.css';
           {[
             {
               id: 's-presencial',
-              img: '/images/foto_sessao_4.jpg',
+              img: `${baseUrl}images/foto_sessao_4.jpg`,
               alt: 'Sessão de personal training presencial no estúdio do Areeiro',
               badge: 'Individual ou dupla', badgeCor: '#4A7A2E',
               tag: 'No estúdio', emoji: '🏋️',
@@ -117,7 +119,7 @@ import '../styles/global.css';
             },
             {
               id: 's-online',
-              img: '/images/foto_online.jpg',
+              img: `${baseUrl}images/foto_online.jpg`,
               alt: 'Sessão de personal training online por videochamada',
               badge: 'Sem deslocação', badgeCor: '#1971C2',
               tag: 'Videochamada', emoji: '💻',
@@ -127,7 +129,7 @@ import '../styles/global.css';
             },
             {
               id: 's-app',
-              img: '/images/foto_app.jpg',
+              img: `${baseUrl}images/foto_app.jpg`,
               alt: 'App de treino personalizado com plano e vídeos',
               badge: 'Mais acessível', badgeCor: '#2F9E44',
               tag: 'App + WhatsApp', emoji: '📱',
@@ -137,7 +139,7 @@ import '../styles/global.css';
             },
             {
               id: 's-outdoor',
-              img: '/images/foto_outdoor.jpg',
+              img: `${baseUrl}images/foto_outdoor.jpg`,
               alt: 'Treino outdoor num parque de Lisboa',
               badge: 'Individual ou grupo', badgeCor: '#E8590C',
               tag: 'Ao ar livre', emoji: '🌿',
@@ -147,7 +149,7 @@ import '../styles/global.css';
             },
             {
               id: 's-laboral',
-              img: '/images/foto_laboral.jpg',
+              img: `${baseUrl}images/foto_laboral.jpg`,
               alt: 'Ginástica laboral em empresa com grupo de colaboradores',
               badge: 'Para empresas', badgeCor: '#2F4A35',
               tag: 'Empresas', emoji: '🏢',
@@ -332,7 +334,7 @@ import '../styles/global.css';
     <section class="sobre" id="sobre" aria-labelledby="sb-titulo">
       <div class="container sobre__inner">
         <div class="sobre__visual">
-          <img src="/images/foto_bernardo.jpg" alt="Bernardo Lima, personal trainer no Areeiro, Lisboa" loading="lazy" />
+          <img src={`${baseUrl}images/foto_bernardo.jpg" alt="Bernardo Lima, personal trainer no Areeiro, Lisboa" loading="lazy" />
           <div class="sobre__stats">
             <div class="stat"><strong>13+</strong><span>Anos de experiência</span></div>
             <div class="stat"><strong>+100</strong><span>Clientes acompanhados</span></div>
@@ -369,22 +371,22 @@ import '../styles/global.css';
         <h2 id="t-titulo">Testemunhos</h2>
         <div class="testemunhos__grid">
           {[
-            { av:'/images/avatar_raquel.jpg', nome:'Raquel Montez',   fmt:'Presencial', foco:'Força e mobilidade',  cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_raquel.jpg`, nome:'Raquel Montez',   fmt:'Presencial', foco:'Força e mobilidade',  cor:'#4A7A2E',
               texto:'"Treino 1x por semana com o Bernardo desde setembro de 2024 e os resultados no meu bem-estar são notórios. Antes passava a vida a remediar dores de costas com massagens. Desde então não só me sinto mais forte, como sem dores e mais motivada."',
               resultado:'Dores de costas (escoliose) eliminadas após 1 ano e 5 meses' },
-            { av:'/images/avatar_jose.jpg',   nome:'Jose Laureano',   fmt:'Presencial', foco:'Treino sénior',       cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_jose.jpg`,   nome:'Jose Laureano',   fmt:'Presencial', foco:'Treino sénior',       cor:'#4A7A2E',
               texto:'"Tenho mais de 50 anos e problemas crónicos de costas. Desde que comecei a treinar com o Bernardo, especialmente com os treinos de mobilidade, tenho-me sentido muito melhor no dia a dia."',
               resultado:'Melhoria significativa com treinos de mobilidade adaptados' },
-            { av:'/images/avatar_ines.jpg',   nome:'Inês Rodrigues',  fmt:'Presencial', foco:'Grávidas e pós-parto', cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_ines.jpg`,   nome:'Inês Rodrigues',  fmt:'Presencial', foco:'Grávidas e pós-parto', cor:'#4A7A2E',
               texto:'"O Bernardo é um excelente profissional, com muito conhecimento técnico. Foi muito importante na minha gravidez e também me acompanhou no processo pós-parto, sempre disponível e respeitando o meu timing."',
               resultado:'Acompanhamento completo da gravidez ao pós-parto' },
-            { av:'/images/avatar_tania.jpg',  nome:'Tânia Ramos',     fmt:'Presencial', foco:'Reabilitação',        cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_tania.jpg`,  nome:'Tânia Ramos',     fmt:'Presencial', foco:'Reabilitação',        cor:'#4A7A2E',
               texto:'"O Bernardo tem sido o melhor PT que poderia querer. Trabalha com o meu filho desde os 11 anos, que tem uma limitação física, e os resultados não poderiam ser melhores. Inclusive, não precisou da cirurgia que estava quase garantida aos 15 anos."',
               resultado:'Criança com limitação física evitou cirurgia prevista' },
-            { av:'/images/avatar_sara.jpg',   nome:'Sara del Pereira', fmt:'Presencial', foco:'Força e hipertrofia', cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_sara.jpg`,   nome:'Sara del Pereira', fmt:'Presencial', foco:'Força e hipertrofia', cor:'#4A7A2E',
               texto:'"Muito feliz por ter conhecido o Bernardo, graças a ele treino com consistência há quase 3 anos. Consegui aumentar massa muscular, alcançar a silhueta que queria e fazer o dia a dia de uma forma mais leve e sem dores."',
               resultado:'3 anos de consistência — massa muscular e sem dores' },
-            { av:'/images/avatar_barbara.jpg', nome:'Bárbara Costa',  fmt:'Empresas',   foco:'Ginástica laboral',   cor:'#4A7A2E',
+            { av:`${baseUrl}images/avatar_barbara.jpg`, nome:'Bárbara Costa',  fmt:'Empresas',   foco:'Ginástica laboral',   cor:'#4A7A2E',
               texto:'"Conheci o Bernardo num ginásio corporativo e é um excelente profissional. Motiva imenso, puxa mesmo por nós e não deixa desistir. Sempre simpático e atento, explica muito bem os exercícios e corrige quando é preciso. Recomendo a 100%!"',
               resultado:'Aulas sempre cheias — motivação e correcção técnica' },
           ].map(t => (
@@ -411,9 +413,9 @@ import '../styles/global.css';
     <section class="espaco" id="espaco" aria-labelledby="es-titulo">
       <div class="container espaco__inner">
         <div class="espaco__galeria">
-          <img src="/images/foto_espaco_1.jpg" alt="Vista geral do estúdio de personal training no Areeiro" loading="lazy" class="espaco__principal" />
-          <img src="/images/foto_espaco_2.jpg" alt="Área de treino com halteres e equipamentos" loading="lazy" />
-          <img src="/images/foto_sessao_2.jpg" alt="Bernardo em sessão de acompanhamento no estúdio" loading="lazy" />
+          <img src={`${baseUrl}images/foto_espaco_1.jpg" alt="Vista geral do estúdio de personal training no Areeiro" loading="lazy" class="espaco__principal" />
+          <img src={`${baseUrl}images/foto_espaco_2.jpg" alt="Área de treino com halteres e equipamentos" loading="lazy" />
+          <img src={`${baseUrl}images/foto_sessao_2.jpg" alt="Bernardo em sessão de acompanhamento no estúdio" loading="lazy" />
         </div>
         <div class="espaco__texto">
           <p class="section-label">O espaço</p>
@@ -437,7 +439,7 @@ import '../styles/global.css';
         <div class="localizacao__inner">
           <div class="localizacao__mapa">
             <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer">
-              <img src="/images/foto_mapa.jpg" alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" loading="lazy" />
+              <img src={`${baseUrl}images/foto_mapa.jpg" alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" loading="lazy" />
             </a>
           </div>
           <div class="localizacao__info">

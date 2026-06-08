@@ -10,8 +10,11 @@ const {
   description = 'Treino personalizado no Areeiro, Lisboa. Personal Training presencial, online, app e empresas. Bernardo Lima, 13+ anos de experiência. Avaliação inicial disponível.',
 } = Astro.props;
 
-const site = 'https://[DOMINIO]'; // ← [SUBSTITUIR]
+const site = 'https://maribacelo.github.io/TBLFitness';
+const assetBase = import.meta.env.BASE_URL;
 const ogImage = `${site}/images/foto_sessao_1.jpg`;
+const logoImage = `${assetBase}images/logo_tbl.jpg`;
+const canonicalUrl = `${site}/`;
 ---
 
 <!doctype html>
@@ -22,7 +25,7 @@ const ogImage = `${site}/images/foto_sessao_1.jpg`;
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href={site + '/'} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Google Search Console verification meta tag goes here -->
 
@@ -30,7 +33,7 @@ const ogImage = `${site}/images/foto_sessao_1.jpg`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:url" content={site + '/'} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_PT" />
     <meta property="og:site_name" content="TBL Studio – Bernardo Lima" />
@@ -44,8 +47,8 @@ const ogImage = `${site}/images/foto_sessao_1.jpg`;
     <meta name="theme-color" content="#4A7A2E" />
 
     <!-- Favicon [SUBSTITUIR pelos ficheiros reais] -->
-    <link rel="icon" type="image/png" href="/images/logo_tbl.jpg" />
-    <link rel="apple-touch-icon" href="/images/logo_tbl.jpg" />
+    <link rel="icon" type="image/png" href={logoImage} />
+    <link rel="apple-touch-icon" href={logoImage} />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -62,8 +65,8 @@ const ogImage = `${site}/images/foto_sessao_1.jpg`;
         "@type": "HealthAndBeautyBusiness",
         "name": "TBL Studio & Personal Training by Bernardo Lima",
         "description": "Serviço de personal training no Areeiro, Lisboa. Presencial, online, app, outdoor e empresas.",
-        "url": "https://[DOMINIO]/",
-        "image": "https://[DOMINIO]/images/foto_sessao_1.jpg",
+        "url": "https://maribacelo.github.io/TBLFitness/",
+        "image": "https://maribacelo.github.io/TBLFitness/images/foto_sessao_1.jpg",
         "telephone": "+351969698944",
         "email": "bernardo.lima93@gmail.com",
         "address": {
