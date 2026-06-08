@@ -1,6 +1,6 @@
 # TBL Studio — Personal Training by Bernardo Lima
 
-Site institucional em **Astro 4 + React 18**, mobile-first, estático, pronto para GitHub Pages.
+Site institucional em **Astro 4**, mobile-first, estático, pronto para GitHub Pages.
 
 ---
 
@@ -12,8 +12,8 @@ tbl-studio/
 │   ├── components/
 │   │   ├── Header.astro       # Header sticky + menu mobile
 │   │   ├── Footer.astro       # Footer com links reais
-│   │   ├── Quiz.tsx           # Quiz interactivo (React Island)
-│   │   └── ContactForm.tsx    # Formulário validado (React Island)
+│   │   ├── Quiz.astro         # Quiz interactivo sem framework cliente
+│   │   └── ContactForm.astro  # Formulário validado sem framework cliente
 │   ├── layouts/
 │   │   └── BaseLayout.astro   # HTML base, SEO, JSON-LD
 │   ├── pages/
@@ -34,6 +34,8 @@ tbl-studio/
 ---
 
 ## Instalação e desenvolvimento local
+
+Requer Node.js 22.12+.
 
 ```bash
 # 1. Instalar dependências
@@ -75,7 +77,7 @@ npm run preview
 | `src/layouts/BaseLayout.astro` | `[DOMINIO]` |
 | `public/robots.txt` | `[DOMINIO]` |
 | `public/sitemap.xml` | `[DOMINIO]` |
-| `src/components/ContactForm.tsx` | `FORMSPREE_ENDPOINT` |
+| `src/components/ContactForm.astro` | `FORMSPREE_ENDPOINT` |
 
 ---
 
@@ -84,14 +86,14 @@ npm run preview
 **Opção A — Formspree (recomendado, gratuito):**
 1. Criar conta em [formspree.io](https://formspree.io)
 2. Criar formulário e copiar o endpoint
-3. Em `src/components/ContactForm.tsx`, substituir:
-   ```ts
+3. Em `src/components/ContactForm.astro`, substituir:
+   ```js
    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/SEU_ID';
    ```
 
 **Opção B — Netlify Forms:**
 1. Fazer deploy no Netlify
-2. Adicionar `data-netlify="true"` ao `<form>` em `ContactForm.tsx`
+2. Adicionar `data-netlify="true"` ao `<form>` em `ContactForm.astro`
 
 ---
 
@@ -104,8 +106,8 @@ npm run preview
 ---
 
 ## Notas técnicas
-- **React Islands**: `Quiz` e `ContactForm` usam `client:load` — hidratam apenas quando necessário
-- **Imagens**: todas em `/public/images/`, optimizadas para web
+- **Sem framework no cliente**: `Quiz` e `ContactForm` usam JavaScript leve compilado pelo Astro
+- **Imagens**: JPEG fallback + WebP em `/public/images/`, servidas via `<picture>`
 - **SEO**: JSON-LD LocalBusiness, Open Graph, Twitter Card, canonical, sitemap
 - **Acessibilidade**: skip link, aria-labels, foco visível, contraste adequado
 - **Performance**: CSS e JS mínimos, lazy loading nas imagens, sem bibliotecas pesadas

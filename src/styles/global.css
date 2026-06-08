@@ -2,9 +2,6 @@
    TBL STUDIO — Global Styles
    ═══════════════════════════════════════════════════ */
 
-/* ── Fonts ── */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
-
 /* ── Variables ── */
 :root {
   --verde:        #4A7A2E;

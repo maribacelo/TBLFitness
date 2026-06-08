@@ -11,9 +11,13 @@ const {
 } = Astro.props;
 
 const site = 'https://maribacelo.github.io/TBLFitness';
-const assetBase = import.meta.env.BASE_URL;
-const ogImage = `${site}${assetBase}images/foto_sessao_1.jpg`;
-const logoImage = `${assetBase}images/logo_tbl.jpg`;
+const assetBase = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const assetPath = (file: string) => `${assetBase}images/${file}`;
+const absoluteImage = (file: string) => `${site}/images/${file}`;
+const ogImage = absoluteImage('foto_sessao_1.jpg');
+const logoImage = assetPath('logo_tbl.jpg');
 const canonicalUrl = `${site}/`;
 ---
 

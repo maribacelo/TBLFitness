@@ -1,6 +1,10 @@
 ---
-const baseUrl = import.meta.env.BASE_URL;
-const imagePath = (file: string) => `${baseUrl}images/${file}`;
+import OptimizedImage from './OptimizedImage.astro';
+
+const assetBase = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+const imagePath = (file: string) => `${assetBase}images/${file}`;
 // src/components/Footer.astro
 ---
 
@@ -9,7 +13,7 @@ const imagePath = (file: string) => `${baseUrl}images/${file}`;
 
     <div class="footer__marca">
       <a href="#inicio" class="footer__logo" aria-label="Voltar ao topo">
-        <img src={imagePath('logo_tbl.jpg')} alt="TBL" width="32" height="32" class="footer__logo-img" />
+        <OptimizedImage src={imagePath('logo_tbl.jpg')} alt="TBL" width="1000" height="1000" class="footer__logo-img" />
         <span class="logo-text">
           <strong>Bernardo</strong>
           <em>Personal Training</em>
