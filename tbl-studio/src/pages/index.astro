@@ -1,0 +1,887 @@
+---
+// src/pages/index.astro
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Quiz from '../components/Quiz';
+import ContactForm from '../components/ContactForm';
+import '../styles/global.css';
+---
+
+<BaseLayout>
+  <Header />
+
+  <main id="main-content">
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section class="hero" id="inicio" aria-label="Apresentação">
+      <div class="container hero__inner">
+        <div class="hero__content">
+          <p class="hero__eyebrow section-label">Personal Trainer · Areeiro · Lisboa</p>
+          <h1 class="hero__title">
+            Treinar melhor,<br>
+            <em>para viver melhor.</em>
+          </h1>
+          <p class="hero__subtitle">
+            Acompanhamento individual em Lisboa — presencial no Areeiro, por videochamada ou por app.
+            Com foco em força, mobilidade e qualidade de vida real.
+          </p>
+          <div class="hero__tags">
+            <span>"Não sei por onde começar."</span>
+            <span>"Tenho receio de me magoar."</span>
+            <span>"Cansado de ginásios impessoais."</span>
+            <span>"Quero mais força e energia."</span>
+          </div>
+          <div class="hero__actions">
+            <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20marcar%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--large">
+              Agendar avaliação inicial
+            </a>
+            <a href="https://wa.me/351969698944" target="_blank" rel="noopener noreferrer" class="btn btn--wa btn--large">
+              💬 Falar pelo WhatsApp
+            </a>
+          </div>
+          <p class="hero__note">Sem compromisso. A avaliação inicial é o primeiro passo.</p>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__img-wrap">
+            <img src="/images/foto_sessao_1.jpg" alt="Bernardo a acompanhar sessão de treino personalizado no Areeiro" width="600" height="720" loading="eager" />
+            <div class="hero__badge">
+              <span>Areeiro, Lisboa</span>
+              <small>Estúdio privado · Online · App</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de confiança -->
+      <div class="container">
+        <div class="trust-bar">
+          <div class="trust-item"><strong>1:1</strong><span>Acompanhamento individual</span></div>
+          <div class="trust-item"><strong>1h</strong><span>Sessões completas sempre</span></div>
+          <div class="trust-item"><strong>5</strong><span>Formatos disponíveis</span></div>
+          <div class="trust-item"><strong>📍</strong><span>Areeiro · Online · Empresas</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ IDENTIFICAÇÃO ═══════════════════════════ -->
+    <section class="identificacao" id="identificacao" aria-labelledby="id-titulo">
+      <div class="container">
+        <div class="identificacao__inner">
+          <div class="identificacao__texto">
+            <p class="section-label">Reconhece-se?</p>
+            <h2 id="id-titulo">Este acompanhamento pode ser para si.</h2>
+            <div class="divider"></div>
+            <p>Cada pessoa chega com uma história diferente. O ponto em comum é a necessidade de um treino mais consciente, acompanhado e ajustado à realidade de cada um.</p>
+            <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20perceber%20o%20melhor%20plano%20para%20mim." target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+              Perceber o melhor plano
+            </a>
+          </div>
+          <div class="identificacao__cards">
+            {[
+              { icon: '🏟️', t: 'Cansado de ginásios cheios',       d: 'Impessoais, sem orientação, sem acompanhamento. Aqui é diferente.' },
+              { icon: '🤷', t: 'Não sabe por onde começar',         d: 'A avaliação inicial serve exactamente para isso. Sem pressão.' },
+              { icon: '⚠️', t: 'Receio de se magoar',               d: 'A técnica é sempre corrigida e o ritmo respeitado.' },
+              { icon: '📋', t: 'Já tentou, mas sem consistência',   d: 'Faltou estrutura, orientação e acompanhamento ao longo do tempo.' },
+              { icon: '🎯', t: 'Quer um treino adaptado a si',      d: 'Ao seu corpo, rotina, limitações e objectivos reais.' },
+              { icon: '🌿', t: 'Numa fase específica da vida',      d: 'Gravidez, pós-parto, regresso após lesão, idade sénior.' },
+            ].map(c => (
+              <div class="id-card fade-in">
+                <span>{c.icon}</span>
+                <div><strong>{c.t}</strong><p>{c.d}</p></div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ FORMATOS ═══════════════════════════ -->
+    <section class="formatos" id="formatos" aria-labelledby="fmt-titulo">
+      <div class="container">
+        <p class="section-label">Como trabalhamos</p>
+        <h2 id="fmt-titulo">Formatos de treino</h2>
+        <p class="section-intro">Cinco formas de trabalhar, cada uma pensada para um contexto diferente. Em todas as sessões com o Bernardo, uma hora completa.</p>
+
+        <div class="formatos__grid">
+          {[
+            {
+              id: 's-presencial',
+              img: '/images/foto_sessao_4.jpg',
+              alt: 'Sessão de personal training presencial no estúdio do Areeiro',
+              badge: 'Individual ou dupla', badgeCor: '#4A7A2E',
+              tag: 'No estúdio', emoji: '🏋️',
+              titulo: 'Personal Training Presencial',
+              desc: 'Sessões de 1 hora no estúdio privado do Areeiro. Individual ou em dupla — casal, amigos ou colegas.',
+              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20presencial.',
+            },
+            {
+              id: 's-online',
+              img: '/images/foto_online.jpg',
+              alt: 'Sessão de personal training online por videochamada',
+              badge: 'Sem deslocação', badgeCor: '#1971C2',
+              tag: 'Videochamada', emoji: '💻',
+              titulo: 'Personal Training Online',
+              desc: 'Treino ao vivo por videochamada, 1 hora completa. Mesma estrutura do presencial, sem necessidade de deslocação.',
+              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20online.',
+            },
+            {
+              id: 's-app',
+              img: '/images/foto_app.jpg',
+              alt: 'App de treino personalizado com plano e vídeos',
+              badge: 'Mais acessível', badgeCor: '#2F9E44',
+              tag: 'App + WhatsApp', emoji: '📱',
+              titulo: 'Plano por App',
+              desc: 'Plano mensal personalizado com vídeos explicativos. Treina no teu horário com acompanhamento por WhatsApp.',
+              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20plano%20por%20app.',
+            },
+            {
+              id: 's-outdoor',
+              img: '/images/foto_outdoor.jpg',
+              alt: 'Treino outdoor num parque de Lisboa',
+              badge: 'Individual ou grupo', badgeCor: '#E8590C',
+              tag: 'Ao ar livre', emoji: '🌿',
+              titulo: 'Treino Outdoor',
+              desc: 'Sessões em espaços exteriores de Lisboa — individual ou em pequenos grupos. Mesmo nível de acompanhamento.',
+              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20o%20treino%20outdoor.',
+            },
+            {
+              id: 's-laboral',
+              img: '/images/foto_laboral.jpg',
+              alt: 'Ginástica laboral em empresa com grupo de colaboradores',
+              badge: 'Para empresas', badgeCor: '#2F4A35',
+              tag: 'Empresas', emoji: '🏢',
+              titulo: 'Ginástica Laboral',
+              desc: 'O Bernardo desloca-se às empresas. HIIT, mobilidade e activação em grupo. Clientes: Galp, Cofidis, Solinca, Time to Fitness, Pavilhão Municipal Casal Vistoso.',
+              wa: 'Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20gin%C3%A1stica%20laboral.',
+            },
+          ].map(f => (
+            <article class="formato-card fade-in" id={f.id}>
+              <div class="formato-card__img">
+                <img src={f.img} alt={f.alt} loading="lazy" />
+                <span class="formato-badge" style={`background:${f.badgeCor}`}>{f.badge}</span>
+                <span class="formato-tag">{f.tag}</span>
+              </div>
+              <div class="formato-card__body">
+                <h3>{f.emoji} {f.titulo}</h3>
+                <p>{f.desc}</p>
+                <a href={`https://wa.me/351969698944?text=${f.wa}`} target="_blank" rel="noopener noreferrer" class="formato-cta">
+                  Saber mais →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <!-- Avaliação CTA -->
+        <div class="avaliacao-cta">
+          <div>
+            <p class="section-label section-label--light">Primeiro passo</p>
+            <h3>Avaliação inicial</h3>
+            <p>Uma sessão para perceber o seu ponto de partida. Não precisa de saber o que quer — a avaliação serve para isso. Sem compromisso imediato.</p>
+          </div>
+          <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20marcar%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener noreferrer" class="btn btn--white btn--large">
+            Marcar avaliação inicial
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ QUIZ — React Island ═══════════════════════ -->
+    <section class="quiz-section" id="quiz" aria-labelledby="quiz-titulo">
+      <div class="container">
+        <div class="quiz-section__header">
+          <p class="section-label">Encontre o seu formato</p>
+          <h2 id="quiz-titulo">Qual o melhor formato para si?</h2>
+          <p>Responda a algumas perguntas — leva menos de 1 minuto.</p>
+        </div>
+        <div class="quiz-section__card">
+          <Quiz client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ ESPECIALIDADES ═══════════════════════════ -->
+    <section class="especialidades" id="especialidades" aria-labelledby="esp-titulo">
+      <div class="container">
+        <p class="section-label">Especialidades</p>
+        <h2 id="esp-titulo">Focos de trabalho</h2>
+        <p class="section-intro">O acompanhamento adapta-se ao objectivo e à fase da vida de cada pessoa.</p>
+        <div class="esp__grid">
+          {[
+            {
+              icon: '💪', titulo: 'Força e hipertrofia',
+              desc: 'Ganho de massa muscular e força para saúde, postura e qualidade de vida. Programação baseada em sobrecarga progressiva e padrões fundamentais de movimento.',
+              detalhes: 'Sobrecarga progressiva, periodização e recuperação. Padrões: agachar, empurrar, puxar, transportar. Adaptado ao nível e histórico de cada pessoa.',
+              para: 'Adultos que querem ganhar massa muscular de forma saudável ou simplesmente sentir-se mais fortes.',
+              tags: ['Sobrecarga progressiva','Hipertrofia','Força funcional'],
+              wa: 'treino%20de%20for%C3%A7a',
+            },
+            {
+              icon: '🤍', titulo: 'Treino sénior',
+              desc: 'Força funcional, equilíbrio, coordenação e mobilidade articular. Exercícios que replicam movimentos do quotidiano com progressão cuidadosa.',
+              detalhes: 'Levantamentos funcionais, equilíbrio, prevenção de quedas. Ritmo sempre respeitado, atenção a condições de saúde.',
+              para: 'Adultos a partir dos 60 anos que querem manter autonomia, mobilidade e qualidade de vida.',
+              tags: ['Força funcional','Equilíbrio','Autonomia','Prevenção de quedas'],
+              wa: 'treino%20s%C3%A9nior',
+            },
+            {
+              icon: '🌸', titulo: 'Grávidas e pós-parto',
+              desc: 'Exercício adaptado à gravidez e ao pós-parto — pavimento pélvico, pressão intra-abdominal, mobilidade e recuperação progressiva.',
+              detalhes: 'Gravidez: controlo da pressão abdominal, pavimento pélvico, postura. Pós-parto: reabilitação do core, atenção à diástase. Com indicação médica quando aplicável.',
+              para: 'Grávidas em qualquer trimestre e mulheres no pós-parto.',
+              tags: ['Pavimento pélvico','Diástase','Reabilitação pós-parto'],
+              wa: 'treino%20para%20gr%C3%A1vidas',
+            },
+            {
+              icon: '🔄', titulo: 'Recuperação e reabilitação',
+              desc: 'Para pessoas em recuperação de lesões, cirurgias ou condições neurológicas como AVC. O treino complementa a fisioterapia com ganho progressivo de força.',
+              detalhes: 'Padrões de movimento adaptados, progressão gradual, atenção à compensação. Comunicação com equipa médica quando necessário.',
+              para: 'Pessoas em recuperação de lesões, pós-cirurgia, AVC ou com limitações físicas.',
+              tags: ['Recuperação de lesões','Pós-AVC','Força progressiva'],
+              wa: 'recupera%C3%A7%C3%A3o%20e%20reabilita%C3%A7%C3%A3o',
+            },
+          ].map(e => (
+            <article class="esp-card fade-in">
+              <div class="esp-card__icon">{e.icon}</div>
+              <h3>{e.titulo}</h3>
+              <p>{e.desc}</p>
+              <div class="esp-tags">
+                {e.tags.map(t => <span>{t}</span>)}
+              </div>
+              <details class="esp-card__details">
+                <summary>Como se trabalha</summary>
+                <div>
+                  <p>{e.detalhes}</p>
+                  <div class="esp-card__para">
+                    <strong>Ideal para</strong>
+                    <p>{e.para}</p>
+                  </div>
+                  <a href={`https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20saber%20mais%20sobre%20${e.wa}.`} target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--full">
+                    Saber mais
+                  </a>
+                </div>
+              </details>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ AVALIAÇÃO TÉCNICA ═══════════════════════ -->
+    <section class="avaliacao" id="avaliacao" aria-labelledby="av-titulo">
+      <div class="container">
+        <div class="avaliacao__inner">
+          <div class="avaliacao__intro">
+            <p class="section-label">Avaliação inicial</p>
+            <h2 id="av-titulo">O que acontece na primeira sessão.</h2>
+            <div class="divider"></div>
+            <p>A avaliação não é um formulário. É uma sessão de observação real que permite construir um ponto de partida honesto e um plano que faz sentido para aquela pessoa específica.</p>
+            <div class="avaliacao__duracao">
+              <strong>Duração</strong><span>60 a 75 minutos</span>
+            </div>
+            <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20marcar%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+              Marcar avaliação
+            </a>
+          </div>
+          <ol class="avaliacao__fases">
+            {[
+              { n:'01', t:'Conversa inicial', d:'Histórico, lesões, patologias, rotina, disponibilidade e objectivos. Contexto real antes de qualquer avaliação física.', active: true },
+              { n:'02', t:'Análise postural e padrões de movimento', d:'Observação de postura e padrões fundamentais — agachar, empurrar, puxar, rodar. Identificação de desequilíbrios.' },
+              { n:'03', t:'Avaliação de mobilidade articular', d:'Testes de mobilidade — anca, ombros, coluna torácica, tornozelos. Define o que trabalhar imediatamente.' },
+              { n:'04', t:'Testes de força e capacidade física', d:'Testes funcionais adaptados ao nível real de cada pessoa. Sem comparações normativas.' },
+              { n:'05', t:'Definição do plano', d:'Frequência, tipo de treino, foco inicial e metas realistas. O plano é explicado, não apenas entregue.' },
+            ].map(f => (
+              <li>
+                <span class={`fase-num${f.active ? ' active' : ''}`}>{f.n}</span>
+                <div><h3>{f.t}</h3><p>{f.d}</p></div>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════ COMO FUNCIONA ══════════════════════════════ -->
+    <section class="como-funciona" id="como-funciona" aria-labelledby="cf-titulo">
+      <div class="container">
+        <p class="section-label">O processo</p>
+        <h2 id="cf-titulo">Como funciona.</h2>
+        <p class="section-intro">Simples e directo. A partir da avaliação, tudo tem uma razão de ser.</p>
+        <ol class="passos">
+          {[
+            { n:'01', t:'Avaliação inicial', d:'Perceber o ponto de partida — mobilidade, força, padrões de movimento, histórico e objectivos.', active: true },
+            { n:'02', t:'Plano personalizado', d:'Abordagem construída para si, explicada antes de começar. Frequência, tipo de treino e progressão.' },
+            { n:'03', t:'Sessões acompanhadas', d:'Cada sessão tem orientação directa — execução corrigida, carga ajustada, técnica supervisionada.' },
+            { n:'04', t:'Progressão e ajustes', d:'O plano evolui com a pessoa. Avaliações regulares e adaptação a qualquer mudança.' },
+          ].map(p => (
+            <li class="passo fade-in">
+              <span class={`passo__num${p.active ? ' active' : ''}`}>{p.n}</span>
+              <div><h3>{p.t}</h3><p>{p.d}</p></div>
+            </li>
+          ))}
+        </ol>
+        <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20come%C3%A7ar%20com%20uma%20avalia%C3%A7%C3%A3o." target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+          Começar com uma avaliação
+        </a>
+        <p class="passos__nota">Resposta em menos de 24h.</p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════ SOBRE ═══════════════════════════════════ -->
+    <section class="sobre" id="sobre" aria-labelledby="sb-titulo">
+      <div class="container sobre__inner">
+        <div class="sobre__visual">
+          <img src="/images/foto_bernardo.jpg" alt="Bernardo Lima, personal trainer no Areeiro, Lisboa" loading="lazy" />
+          <div class="sobre__stats">
+            <div class="stat"><strong>13+</strong><span>Anos de experiência</span></div>
+            <div class="stat"><strong>+100</strong><span>Clientes acompanhados</span></div>
+          </div>
+        </div>
+        <div class="sobre__conteudo">
+          <p class="section-label">Sobre</p>
+          <h2 id="sb-titulo">O Bernardo</h2>
+          <div class="divider"></div>
+          <p>O Bernardo trabalha com pessoas que procuram treinar de forma mais consciente, segura e personalizada. O foco está em adaptar o treino à realidade de cada cliente — respeitando o ponto de partida, os objectivos, as limitações e a rotina.</p>
+          <p>Acredita que o exercício físico deve ser uma ferramenta ao serviço do bem-estar — não uma pressão estética, não uma competição. O treino deve fazer sentido para quem o faz.</p>
+          <p>Ao longo do percurso acompanhou pessoas muito diferentes: desde quem começa do zero, quem regressa após lesão, grávidas, adultos seniores, pessoas em recuperação neurológica, até quem simplesmente quer sentir-se mais capaz no dia-a-dia.</p>
+          <div class="sobre__formacao">
+            <strong>Formação</strong>
+            <ul><li>Licenciatura em Educação Física e Desporto — Universidade Lusófona</li></ul>
+          </div>
+          <div class="sobre__empresas">
+            <strong>Experiência com empresas e espaços</strong>
+            <div class="empresas-tags">
+              <span>Galp</span><span>Cofidis</span><span>Solinca</span><span>Time to Fitness</span><span>Pavilhão Municipal Casal Vistoso</span>
+            </div>
+          </div>
+          <a href="https://wa.me/351969698944" target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+            Falar com o Bernardo
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════ TESTEMUNHOS ═════════════════════════════ -->
+    <section class="testemunhos" id="testemunhos" aria-labelledby="t-titulo">
+      <div class="container">
+        <p class="section-label">O que dizem</p>
+        <h2 id="t-titulo">Testemunhos</h2>
+        <div class="testemunhos__grid">
+          {[
+            { av:'/images/avatar_raquel.jpg', nome:'Raquel Montez',   fmt:'Presencial', foco:'Força e mobilidade',  cor:'#4A7A2E',
+              texto:'"Treino 1x por semana com o Bernardo desde setembro de 2024 e os resultados no meu bem-estar são notórios. Antes passava a vida a remediar dores de costas com massagens. Desde então não só me sinto mais forte, como sem dores e mais motivada."',
+              resultado:'Dores de costas (escoliose) eliminadas após 1 ano e 5 meses' },
+            { av:'/images/avatar_jose.jpg',   nome:'Jose Laureano',   fmt:'Presencial', foco:'Treino sénior',       cor:'#4A7A2E',
+              texto:'"Tenho mais de 50 anos e problemas crónicos de costas. Desde que comecei a treinar com o Bernardo, especialmente com os treinos de mobilidade, tenho-me sentido muito melhor no dia a dia."',
+              resultado:'Melhoria significativa com treinos de mobilidade adaptados' },
+            { av:'/images/avatar_ines.jpg',   nome:'Inês Rodrigues',  fmt:'Presencial', foco:'Grávidas e pós-parto', cor:'#4A7A2E',
+              texto:'"O Bernardo é um excelente profissional, com muito conhecimento técnico. Foi muito importante na minha gravidez e também me acompanhou no processo pós-parto, sempre disponível e respeitando o meu timing."',
+              resultado:'Acompanhamento completo da gravidez ao pós-parto' },
+            { av:'/images/avatar_tania.jpg',  nome:'Tânia Ramos',     fmt:'Presencial', foco:'Reabilitação',        cor:'#4A7A2E',
+              texto:'"O Bernardo tem sido o melhor PT que poderia querer. Trabalha com o meu filho desde os 11 anos, que tem uma limitação física, e os resultados não poderiam ser melhores. Inclusive, não precisou da cirurgia que estava quase garantida aos 15 anos."',
+              resultado:'Criança com limitação física evitou cirurgia prevista' },
+            { av:'/images/avatar_sara.jpg',   nome:'Sara del Pereira', fmt:'Presencial', foco:'Força e hipertrofia', cor:'#4A7A2E',
+              texto:'"Muito feliz por ter conhecido o Bernardo, graças a ele treino com consistência há quase 3 anos. Consegui aumentar massa muscular, alcançar a silhueta que queria e fazer o dia a dia de uma forma mais leve e sem dores."',
+              resultado:'3 anos de consistência — massa muscular e sem dores' },
+            { av:'/images/avatar_barbara.jpg', nome:'Bárbara Costa',  fmt:'Empresas',   foco:'Ginástica laboral',   cor:'#4A7A2E',
+              texto:'"Conheci o Bernardo num ginásio corporativo e é um excelente profissional. Motiva imenso, puxa mesmo por nós e não deixa desistir. Sempre simpático e atento, explica muito bem os exercícios e corrige quando é preciso. Recomendo a 100%!"',
+              resultado:'Aulas sempre cheias — motivação e correcção técnica' },
+          ].map(t => (
+            <blockquote class="testemunho fade-in">
+              <div class="testemunho__header">
+                <img src={t.av} alt={t.nome} class="testemunho__avatar" width="52" height="52" loading="lazy" />
+                <div>
+                  <strong>{t.nome}</strong>
+                  <div class="testemunho__badges">
+                    <span class="badge badge--verde">{t.fmt}</span>
+                    <span class="badge badge--outline">{t.foco}</span>
+                  </div>
+                </div>
+              </div>
+              <p>{t.texto}</p>
+              <footer>✓ {t.resultado}</footer>
+            </blockquote>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ ESPAÇO ════════════════════════════════ -->
+    <section class="espaco" id="espaco" aria-labelledby="es-titulo">
+      <div class="container espaco__inner">
+        <div class="espaco__galeria">
+          <img src="/images/foto_espaco_1.jpg" alt="Vista geral do estúdio de personal training no Areeiro" loading="lazy" class="espaco__principal" />
+          <img src="/images/foto_espaco_2.jpg" alt="Área de treino com halteres e equipamentos" loading="lazy" />
+          <img src="/images/foto_sessao_2.jpg" alt="Bernardo em sessão de acompanhamento no estúdio" loading="lazy" />
+        </div>
+        <div class="espaco__texto">
+          <p class="section-label">O espaço</p>
+          <h2 id="es-titulo">Um espaço calmo, pensado para treinar bem.</h2>
+          <div class="divider"></div>
+          <p>No Areeiro, Lisboa. Pensado para treinos individuais ou em dupla — sem filas, sem confusão, sem partilha.</p>
+          <ul class="espaco__lista">
+            <li><strong>Privado</strong> — O espaço é seu durante a sessão.</li>
+            <li><strong>Equipado</strong> — Material para força, mobilidade e cardiovascular.</li>
+            <li><strong>Acessível</strong> — Metro e autocarro nas proximidades.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ LOCALIZAÇÃO ════════════════════════════ -->
+    <section class="localizacao" id="localizacao" aria-labelledby="lc-titulo">
+      <div class="container">
+        <p class="section-label">Onde estamos</p>
+        <h2 id="lc-titulo">No Areeiro, Lisboa.</h2>
+        <div class="localizacao__inner">
+          <div class="localizacao__mapa">
+            <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer">
+              <img src="/images/foto_mapa.jpg" alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" loading="lazy" />
+            </a>
+          </div>
+          <div class="localizacao__info">
+            <address>
+              <strong>Av. Almirante Gago Coutinho</strong><br />
+              1000-015 Lisboa · Areeiro
+            </address>
+            <div class="localizacao__horarios">
+              <strong>Horários</strong>
+              <p>Segunda a sexta: 07h00 – 22h00</p>
+              <p>Sábado e domingo: 08h00 – 15h00</p>
+            </div>
+            <div class="localizacao__contactos-lista">
+              <a href="tel:+351969698944">📞 +351 969 698 944</a>
+              <a href="mailto:bernardo.lima93@gmail.com">✉️ bernardo.lima93@gmail.com</a>
+            </div>
+            <div class="localizacao__acoes">
+              <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+                Abrir no Google Maps
+              </a>
+              <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20agendar%20um%20treino." target="_blank" rel="noopener noreferrer" class="btn btn--outline">
+                Agendar treino
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CTA FINAL ════════════════════════════ -->
+    <section class="cta-final" id="cta-final" aria-labelledby="cta-titulo">
+      <div class="container cta-final__inner">
+        <p class="section-label section-label--light">Pronto para começar?</p>
+        <h2 id="cta-titulo">Quer começar a treinar com acompanhamento?</h2>
+        <p>Marque uma avaliação inicial e perceba qual o melhor formato para si. Sem compromisso, sem pressão.</p>
+        <div class="cta-final__acoes">
+          <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20marcar%20uma%20avalia%C3%A7%C3%A3o%20inicial." target="_blank" rel="noopener noreferrer" class="btn btn--wa btn--large">
+            💬 Falar pelo WhatsApp
+          </a>
+          <a href="#contacto" class="btn btn--white btn--large">Agendar avaliação</a>
+          <a href="tel:+351969698944" class="btn btn--ghost btn--large">📞 Ligar agora</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CONTACTO ═════════════════════════════ -->
+    <section class="contacto" id="contacto" aria-labelledby="ct-titulo">
+      <div class="container contacto__inner">
+        <div class="contacto__info">
+          <p class="section-label">Contacto</p>
+          <h2 id="ct-titulo">Entre em contacto</h2>
+          <div class="divider"></div>
+          <p>Conte brevemente o que procura. Não precisa de saber exactamente o que quer — é para isso que a avaliação inicial existe.</p>
+          <div class="canais">
+            <a href="https://wa.me/351969698944" target="_blank" rel="noopener noreferrer" class="canal">
+              <span class="canal__icon">💬</span>
+              <div><strong>WhatsApp</strong><small>+351 969 698 944</small></div>
+              <span class="badge badge--verde canal__badge">Resposta rápida</span>
+            </a>
+            <a href="tel:+351969698944" class="canal">
+              <span class="canal__icon">📞</span>
+              <div><strong>Telefone</strong><small>+351 969 698 944</small></div>
+            </a>
+            <a href="mailto:bernardo.lima93@gmail.com" class="canal">
+              <span class="canal__icon">✉️</span>
+              <div><strong>Email</strong><small>bernardo.lima93@gmail.com</small></div>
+            </a>
+            <a href="https://www.instagram.com/tbl.treinos" target="_blank" rel="noopener noreferrer" class="canal">
+              <span class="canal__icon">📸</span>
+              <div><strong>Instagram</strong><small>@tbl.treinos</small></div>
+            </a>
+          </div>
+        </div>
+        <div class="contacto__form">
+          <!-- React Island — hidratado no cliente -->
+          <ContactForm client:load />
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<style>
+/* ── HERO ── */
+.hero { background: var(--fundo); padding-block: 2.25rem 0; position: relative; overflow: hidden; }
+.hero__inner { display: flex; flex-direction: column; gap: 2.5rem; padding-bottom: 0; }
+.hero__eyebrow { margin-bottom: .75rem; }
+.hero__title {
+  font-family: var(--serif);
+  font-size: clamp(1.875rem, 5vw, 3.25rem);
+  font-weight: 600; line-height: 1.16;
+  color: var(--verde-esc); margin-bottom: 1rem;
+}
+.hero__title em { color: var(--verde); font-style: italic; }
+.hero__subtitle { font-size: clamp(.9375rem, 2vw, 1.0625rem); color: var(--texto); line-height: 1.75; margin-bottom: 1.125rem; max-width: 50ch; }
+.hero__tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.hero__tags span { background: var(--verde-claro); border: 1px solid var(--borda-suave); border-radius: var(--radius-full); padding: .375rem .8125rem; font-size: .8125rem; color: var(--verde-esc); font-weight: 500; }
+.hero__actions { display: flex; flex-direction: column; gap: .625rem; margin-bottom: .75rem; }
+.hero__note { font-size: .75rem; color: var(--sec); }
+.hero__img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; }
+.hero__img-wrap img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center top; }
+.hero__badge { position: absolute; bottom: 1rem; left: 1rem; background: rgba(255,255,255,.93); backdrop-filter: blur(8px); border-radius: var(--radius-md); padding: .625rem 1rem; }
+.hero__badge span { display: block; font-size: .8125rem; font-weight: 700; color: var(--verde-esc); }
+.hero__badge small { font-size: .6875rem; color: var(--sec); }
+
+/* Trust bar */
+.trust-bar { display: grid; grid-template-columns: repeat(2,1fr); border-top: 1px solid var(--borda); margin-top: 2rem; }
+.trust-item { display: flex; align-items: center; gap: .625rem; padding: 1.125rem .875rem; border-right: 1px solid var(--borda); }
+.trust-item:nth-child(2n) { border-right: none; }
+.trust-item:nth-child(n+3) { border-top: 1px solid var(--borda); }
+.trust-item strong { font-family: var(--serif); font-size: 1.25rem; color: var(--verde); font-weight: 600; line-height: 1; flex-shrink: 0; }
+.trust-item span { font-size: .75rem; color: var(--sec); line-height: 1.4; }
+
+/* ── IDENTIFICAÇÃO ── */
+.identificacao { background: var(--verde-claro); padding-block: 3rem; }
+.identificacao__inner { display: flex; flex-direction: column; gap: 2rem; }
+.identificacao__texto h2 { font-family: var(--serif); font-size: clamp(1.375rem, 3vw, 2rem); color: var(--verde-esc); margin-bottom: .875rem; line-height: 1.25; }
+.identificacao__texto p { font-size: .9375rem; color: var(--sec); line-height: 1.8; margin-bottom: 1.5rem; }
+.identificacao__cards { display: grid; grid-template-columns: 1fr; gap: .75rem; }
+.id-card { background: #fff; border-radius: var(--radius-md); padding: 1rem; display: flex; gap: .75rem; align-items: flex-start; border: 1px solid var(--borda-suave); }
+.id-card span:first-child { font-size: 1.25rem; flex-shrink: 0; margin-top: .125rem; }
+.id-card strong { display: block; font-size: .875rem; color: var(--verde-esc); margin-bottom: .25rem; }
+.id-card p { font-size: .8125rem; color: var(--sec); line-height: 1.6; margin: 0; }
+
+/* ── FORMATOS ── */
+.formatos { background: #fff; padding-block: 3rem; }
+.formatos h2 { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.25rem); color: var(--verde-esc); margin-bottom: .5rem; }
+.formatos__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.25rem; }
+.formato-card { border-radius: var(--radius-lg); border: 1px solid var(--borda); background: var(--fundo); overflow: hidden; transition: box-shadow .2s, transform .2s; }
+.formato-card:hover { box-shadow: var(--shadow-card-hover); transform: translateY(-2px); }
+.formato-card__img { position: relative; }
+.formato-card__img img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+.formato-badge { position: absolute; top: .75rem; left: .75rem; color: #fff; border-radius: var(--radius-full); padding: .25rem .75rem; font-size: .6875rem; font-weight: 700; }
+.formato-tag { position: absolute; top: .75rem; right: .75rem; background: rgba(255,255,255,.92); backdrop-filter: blur(6px); border-radius: var(--radius-full); padding: .25rem .625rem; font-size: .625rem; font-weight: 700; color: var(--verde-esc); letter-spacing: .06em; text-transform: uppercase; }
+.formato-card__body { padding: 1.125rem; }
+.formato-card__body h3 { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--verde-esc); margin-bottom: .5rem; line-height: 1.3; }
+.formato-card__body p { font-size: .8125rem; color: var(--sec); line-height: 1.7; margin-bottom: .75rem; }
+.formato-cta { font-size: .8125rem; font-weight: 600; color: var(--verde); text-decoration: none; display: block; padding-top: .75rem; border-top: 1px solid var(--borda); transition: gap .15s; }
+.formato-cta:hover { color: #3d6726; }
+
+/* Avaliação CTA */
+.avaliacao-cta { background: var(--verde-esc); border-radius: var(--radius-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: 1.25rem; position: relative; overflow: hidden; margin-top: .75rem; }
+.avaliacao-cta::before { content: ''; position: absolute; right: -3rem; top: -3rem; width: 10rem; height: 10rem; border-radius: 50%; background: rgba(111,143,78,.18); pointer-events: none; }
+.avaliacao-cta .section-label { color: rgba(255,255,255,.55); }
+.avaliacao-cta h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; color: #fff; margin-bottom: .5rem; }
+.avaliacao-cta p { font-size: .875rem; color: rgba(255,255,255,.75); line-height: 1.7; margin: 0; }
+
+/* ── QUIZ ── */
+.quiz-section { background: #fff; padding-block: 3rem; }
+.quiz-section__header { text-align: center; margin-bottom: 1.75rem; }
+.quiz-section__header h2 { font-family: var(--serif); font-size: clamp(1.375rem, 3vw, 2rem); color: var(--verde-esc); margin-bottom: .5rem; }
+.quiz-section__header p { font-size: .9375rem; color: var(--sec); }
+.quiz-section__card { background: var(--fundo); border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--borda); max-width: 680px; margin-inline: auto; }
+
+/* Quiz internal styles */
+:global(.quiz-wrap) { font-family: var(--sans); }
+:global(.quiz-progress) { margin-bottom: 1.5rem; }
+:global(.quiz-progress__labels) { display: flex; justify-content: space-between; margin-bottom: .375rem; font-size: .8125rem; color: var(--sec); }
+:global(.quiz-progress__pct) { font-weight: 700; color: var(--verde); }
+:global(.quiz-progress__bar) { height: 4px; background: var(--borda); border-radius: 999px; overflow: hidden; }
+:global(.quiz-progress__fill) { height: 100%; background: var(--verde); border-radius: 999px; transition: width .4s; }
+:global(.quiz__q) { font-family: var(--serif); font-size: 1.0625rem; font-weight: 600; color: var(--verde-esc); margin-bottom: .375rem; line-height: 1.4; }
+:global(.quiz__sub) { font-size: .8125rem; color: var(--sec); margin-bottom: 1.125rem; }
+:global(.quiz__ops) { display: flex; flex-direction: column; gap: .5rem; }
+:global(.quiz__ops--grid) { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+:global(.quiz__op) { background: #fff; border: 1.5px solid var(--borda); border-radius: var(--radius-md); padding: .75rem 1rem; font-size: .875rem; font-weight: 500; color: var(--texto); cursor: pointer; text-align: left; display: flex; align-items: center; gap: .625rem; transition: border-color .15s, background .15s; font-family: var(--sans); line-height: 1.4; }
+:global(.quiz__op:hover) { border-color: var(--verde); background: var(--verde-claro); }
+:global(.quiz__op-emoji) { font-size: 1.125rem; flex-shrink: 0; }
+:global(.quiz__formato-found) { border: 1.5px solid; border-radius: var(--radius-md); padding: .75rem 1rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: .75rem; font-size: .875rem; }
+:global(.quiz__formato-found span) { font-size: 1.375rem; }
+:global(.quiz__formato-found small) { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: .125rem; }
+:global(.quiz__formato-found strong) { display: block; font-weight: 600; color: var(--verde-esc); }
+:global(.quiz__result) { text-align: center; }
+:global(.quiz__result-icon) { font-size: 2.5rem; margin-bottom: .75rem; }
+:global(.quiz__result h3) { font-family: var(--serif); font-size: 1.375rem; font-weight: 600; color: var(--verde-esc); margin: .375rem 0 .625rem; }
+:global(.quiz__result > p) { font-size: .875rem; color: var(--sec); line-height: 1.7; margin-bottom: 1.25rem; }
+:global(.quiz__result-respostas) { background: var(--verde-claro); border-radius: var(--radius-md); padding: .875rem 1rem; margin-bottom: 1.25rem; text-align: left; border: 1px solid var(--borda-suave); }
+:global(.quiz__result-respostas strong) { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .5rem; }
+:global(.quiz__result-item) { font-size: .8125rem; color: var(--sec); margin-bottom: .25rem; padding-left: .5rem; }
+:global(.quiz__result-actions) { display: flex; flex-direction: column; gap: .625rem; }
+:global(.quiz__reset) { background: none; border: 1.5px solid var(--borda); border-radius: var(--radius-full); padding: .6875rem 1.25rem; font-size: .8125rem; color: var(--sec); cursor: pointer; font-family: var(--sans); width: 100%; transition: border-color .15s; }
+:global(.quiz__reset:hover) { border-color: var(--verde); }
+:global(.quiz__wa-note) { font-size: .6875rem; color: var(--sec); margin-top: .75rem; }
+
+/* ── ESPECIALIDADES ── */
+.especialidades { background: var(--verde-claro); padding-block: 3rem; }
+.especialidades h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.25rem); color: var(--verde-esc); margin-bottom: .5rem; }
+.esp__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.esp-card { background: #fff; border-radius: var(--radius-lg); padding: 1.375rem; border: 1px solid var(--borda-suave); }
+.esp-card__icon { font-size: 1.5rem; margin-bottom: .625rem; }
+.esp-card h3 { font-family: var(--serif); font-size: 1.125rem; font-weight: 600; color: var(--verde-esc); margin-bottom: .5rem; }
+.esp-card > p { font-size: .875rem; color: var(--sec); line-height: 1.75; }
+.esp-card__details { margin-top: .75rem; }
+.esp-card__details summary { font-size: .8125rem; font-weight: 600; color: var(--verde); cursor: pointer; padding: .625rem 0; border-top: 1px solid var(--borda); list-style: none; }
+.esp-card__details summary::-webkit-details-marker { display: none; }
+.esp-card__details summary::after { content: ' ▼'; font-size: .625rem; }
+.esp-card__details[open] summary::after { content: ' ▲'; }
+.esp-card__details > div { padding-top: .875rem; display: flex; flex-direction: column; gap: .875rem; }
+.esp-card__details > div > p { font-size: .8125rem; color: var(--sec); line-height: 1.75; }
+.esp-card__para { background: var(--verde-claro); border-radius: var(--radius-md); padding: .75rem; border: 1px solid var(--borda-suave); }
+.esp-card__para strong { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .25rem; }
+.esp-card__para p { font-size: .8125rem; color: var(--sec); line-height: 1.65; margin: 0; }
+
+/* ── AVALIAÇÃO ── */
+.avaliacao { background: var(--fundo); padding-block: 3rem; }
+.avaliacao__inner { display: flex; flex-direction: column; gap: 2rem; }
+.avaliacao__intro h2 { font-family: var(--serif); font-size: clamp(1.375rem,3vw,1.875rem); color: var(--verde-esc); margin-bottom: .875rem; line-height: 1.25; }
+.avaliacao__intro p { font-size: .9375rem; color: var(--sec); line-height: 1.85; margin-bottom: 1.25rem; }
+.avaliacao__duracao { background: var(--verde-claro); border-radius: var(--radius-md); padding: .75rem 1rem; margin-bottom: 1.5rem; border: 1px solid var(--borda-suave); }
+.avaliacao__duracao strong { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .25rem; }
+.avaliacao__duracao span { font-size: .875rem; color: var(--sec); }
+.avaliacao__fases { list-style: none; display: flex; flex-direction: column; gap: 0; }
+.avaliacao__fases li { display: grid; grid-template-columns: 2.5rem 1fr; gap: 1rem; padding-block: 1.25rem; border-bottom: 1px solid var(--borda); align-items: flex-start; }
+.avaliacao__fases li:last-child { border-bottom: none; }
+.avaliacao__fases li h3 { font-family: var(--serif); font-size: .9375rem; font-weight: 600; color: var(--verde-esc); margin-bottom: .375rem; }
+.avaliacao__fases li p { font-size: .8125rem; color: var(--sec); line-height: 1.75; margin: 0; }
+.fase-num { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm); background: var(--verde-claro); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: .9375rem; color: var(--verde); flex-shrink: 0; }
+.fase-num.active { background: var(--verde); color: #fff; }
+
+/* ── COMO FUNCIONA ── */
+.como-funciona { background: var(--verde-claro); padding-block: 3rem; }
+.como-funciona h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.25rem); color: var(--verde-esc); margin-bottom: .5rem; }
+.passos { list-style: none; margin-bottom: 2rem; }
+.passo { display: flex; gap: 1rem; align-items: flex-start; padding-block: 1.125rem; border-bottom: 1px solid var(--borda); }
+.passo:last-child { border-bottom: none; }
+.passo__num { width: 3rem; height: 3rem; border-radius: var(--radius-full); background: #fff; border: 2px solid var(--borda); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 1.125rem; color: var(--verde); flex-shrink: 0; }
+.passo__num.active { background: var(--verde); border-color: var(--verde); color: #fff; }
+.passo h3 { font-family: var(--serif); font-size: 1rem; font-weight: 600; color: var(--verde-esc); margin-bottom: .25rem; }
+.passo p { font-size: .8125rem; color: var(--sec); line-height: 1.7; margin: 0; }
+.passos__nota { font-size: .8125rem; color: var(--sec); margin-top: .75rem; }
+
+/* ── SOBRE ── */
+.sobre { background: #fff; padding-block: 3rem; }
+.sobre__inner { display: flex; flex-direction: column; gap: 2rem; }
+.sobre__visual img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: var(--radius-lg); }
+.sobre__stats { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; margin-top: .75rem; }
+.stat { background: var(--fundo); border-radius: var(--radius-md); padding: .875rem; text-align: center; border: 1px solid var(--borda); }
+.stat strong { display: block; font-family: var(--serif); font-size: 1.5rem; color: var(--verde); font-weight: 600; line-height: 1; margin-bottom: .25rem; }
+.stat span { font-size: .6875rem; color: var(--sec); }
+.sobre__conteudo h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.25rem); color: var(--verde-esc); margin-bottom: .875rem; line-height: 1.25; }
+.sobre__conteudo p { font-size: .9375rem; color: var(--sec); line-height: 1.85; margin-bottom: .875rem; }
+.sobre__formacao { background: var(--verde-claro); border-left: 3px solid var(--verde); border-radius: var(--radius-md); padding: 1rem 1.125rem; margin-block: 1.25rem; }
+.sobre__formacao strong { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .5rem; }
+.sobre__formacao ul { list-style: none; }
+.sobre__formacao li { font-size: .8125rem; color: var(--sec); padding-left: .875rem; position: relative; }
+.sobre__formacao li::before { content: '·'; position: absolute; left: 0; color: var(--verde); font-weight: 700; }
+.sobre__empresas { margin-bottom: 1.5rem; }
+.sobre__empresas strong { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .625rem; }
+.empresas-tags { display: flex; flex-wrap: wrap; gap: .5rem; }
+.empresas-tags span { font-size: .75rem; background: var(--verde-claro); border: 1px solid var(--borda-suave); border-radius: var(--radius-full); padding: .3125rem .75rem; color: var(--verde-esc); font-weight: 600; }
+
+/* ── TESTEMUNHOS ── */
+.testemunhos { background: var(--fundo); padding-block: 3rem; }
+.testemunhos h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2.25rem); color: var(--verde-esc); margin-bottom: 2rem; }
+.testemunhos__grid { display: grid; grid-template-columns: 1fr; gap: 1rem; }
+.testemunho { background: #fff; border: 1px solid var(--borda); border-radius: var(--radius-lg); padding: 1.375rem; display: flex; flex-direction: column; gap: .875rem; }
+.testemunho__header { display: flex; gap: .75rem; align-items: center; }
+.testemunho__avatar { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--verde-claro); }
+.testemunho__header strong { display: block; font-size: .875rem; color: var(--verde-esc); margin-bottom: .25rem; }
+.testemunho__badges { display: flex; gap: .25rem; flex-wrap: wrap; }
+.testemunho p { font-family: var(--serif); font-style: italic; font-size: .9rem; color: var(--texto); line-height: 1.8; flex: 1; margin: 0; }
+.testemunho footer { font-size: .75rem; font-weight: 600; color: var(--verde); padding-top: .75rem; border-top: 1px solid var(--borda); }
+
+/* ── ESPAÇO ── */
+.espaco { background: #fff; padding-block: 3rem; }
+.espaco__inner { display: flex; flex-direction: column; gap: 2rem; }
+.espaco__galeria { display: grid; grid-template-columns: 1fr 1fr; gap: .625rem; }
+.espaco__principal { grid-column: 1 / -1; }
+.espaco__galeria img { border-radius: var(--radius-md); width: 100%; object-fit: cover; aspect-ratio: 4/3; }
+.espaco__principal { aspect-ratio: 16/9; }
+.espaco__texto h2 { font-family: var(--serif); font-size: clamp(1.25rem,3vw,1.75rem); color: var(--verde-esc); margin-bottom: .875rem; line-height: 1.3; }
+.espaco__texto p { font-size: .9375rem; color: var(--sec); line-height: 1.85; margin-bottom: 1.25rem; }
+.espaco__lista { list-style: none; }
+.espaco__lista li { font-size: .875rem; color: var(--sec); padding: .75rem 0; border-bottom: 1px solid var(--borda); display: flex; gap: .5rem; }
+.espaco__lista li:first-child { border-top: 1px solid var(--borda); }
+.espaco__lista strong { color: var(--verde-esc); }
+
+/* ── LOCALIZAÇÃO ── */
+.localizacao { background: var(--verde-claro); padding-block: 3rem; }
+.localizacao h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2rem); color: var(--verde-esc); margin-bottom: 1.75rem; }
+.localizacao__inner { display: flex; flex-direction: column; gap: 1.5rem; }
+.localizacao__mapa img { width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--borda); cursor: pointer; }
+.localizacao__info address { font-size: .9375rem; color: var(--texto); line-height: 1.65; margin-bottom: 1.25rem; }
+.localizacao__info address strong { color: var(--verde-esc); }
+.localizacao__horarios { margin-bottom: 1rem; }
+.localizacao__horarios strong { display: block; font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--verde-esc); margin-bottom: .375rem; }
+.localizacao__horarios p { font-size: .8125rem; color: var(--sec); margin-bottom: .125rem; }
+.localizacao__contactos-lista { display: flex; flex-direction: column; gap: .5rem; margin-bottom: 1.25rem; }
+.localizacao__contactos-lista a { font-size: .9375rem; color: var(--texto); font-weight: 500; text-decoration: none; transition: color .15s; }
+.localizacao__contactos-lista a:hover { color: var(--verde); }
+.localizacao__acoes { display: flex; flex-direction: column; gap: .625rem; }
+
+/* ── CTA FINAL ── */
+.cta-final { background: var(--verde-esc); padding-block: 3.5rem; position: relative; overflow: hidden; }
+.cta-final::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 15% 50%, rgba(111,143,78,.22) 0%, transparent 70%); pointer-events: none; }
+.cta-final__inner { text-align: center; position: relative; }
+.cta-final__inner h2 { font-family: var(--serif); font-size: clamp(1.5rem,4vw,2.375rem); font-weight: 600; color: #fff; margin-bottom: .875rem; line-height: 1.22; }
+.cta-final__inner p { font-size: .9375rem; color: rgba(255,255,255,.75); max-width: 48ch; margin-inline: auto; margin-bottom: 2rem; line-height: 1.8; }
+.cta-final__acoes { display: flex; flex-direction: column; align-items: center; gap: .75rem; }
+
+/* ── CONTACTO ── */
+.contacto { background: var(--fundo); padding-block: 3rem; }
+.contacto__inner { display: flex; flex-direction: column; gap: 2.5rem; }
+.contacto__info h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2rem); color: var(--verde-esc); margin-bottom: .875rem; line-height: 1.25; }
+.contacto__info > p { font-size: .9375rem; color: var(--sec); line-height: 1.85; margin-bottom: 1.75rem; }
+.canais { display: flex; flex-direction: column; gap: .625rem; }
+.canal { display: flex; align-items: center; gap: .75rem; padding: .75rem .875rem; background: #fff; border-radius: var(--radius-md); border: 1px solid var(--borda); text-decoration: none; transition: border-color .2s, box-shadow .2s; }
+.canal:hover { border-color: var(--verde); box-shadow: var(--shadow-card); }
+.canal__icon { width: 2.5rem; height: 2.5rem; border-radius: var(--radius-sm); background: var(--verde-claro); display: flex; align-items: center; justify-content: center; font-size: 1.125rem; flex-shrink: 0; }
+.canal > div { flex: 1; }
+.canal strong { display: block; font-size: .875rem; color: var(--texto); }
+.canal small { font-size: .75rem; color: var(--sec); }
+.canal__badge { flex-shrink: 0; }
+
+/* ContactForm global styles */
+:global(.contact-form) { background: #fff; border-radius: var(--radius-lg); padding: 1.5rem; border: 1px solid var(--borda); box-shadow: 0 4px 28px rgba(47,74,53,.09); }
+:global(.form-nota) { font-size: .8125rem; color: var(--sec); margin-bottom: 1.125rem; padding-bottom: .875rem; border-bottom: 1px solid var(--borda); }
+:global(.form-group) { display: flex; flex-direction: column; gap: .375rem; margin-bottom: .875rem; }
+:global(.form-group label) { font-size: .8125rem; font-weight: 600; color: var(--texto); }
+:global(.form-group label span) { color: var(--verde); }
+:global(.form-group input),
+:global(.form-group select),
+:global(.form-group textarea) { font-family: var(--sans); font-size: .9375rem; color: var(--texto); background: var(--fundo); border: 1.5px solid var(--borda); border-radius: var(--radius-md); padding: .6875rem .875rem; width: 100%; transition: border-color .15s, box-shadow .15s; outline: none; min-height: 46px; }
+:global(.form-group input:focus),
+:global(.form-group select:focus),
+:global(.form-group textarea:focus) { border-color: var(--verde); box-shadow: 0 0 0 3px rgba(74,122,46,.15); background: #fff; }
+:global(.form-group input[aria-invalid="true"]),
+:global(.form-group input:invalid:not(:placeholder-shown)) { border-color: #c0392b; }
+:global(.form-group textarea) { resize: vertical; min-height: 100px; }
+:global(.form-group select) { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .75rem center; padding-right: 2.5rem; cursor: pointer; }
+:global(.form-erro) { font-size: .75rem; color: #c0392b; }
+:global(.form-sucesso) { background: var(--verde-claro); border: 1px solid rgba(74,122,46,.3); border-radius: var(--radius-md); padding: 1.25rem; text-align: center; }
+:global(.form-sucesso strong) { display: block; color: var(--verde-esc); margin-bottom: .375rem; }
+:global(.form-sucesso p) { font-size: .875rem; color: var(--sec); margin: 0; }
+
+/* ══════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ══════════════════════════ */
+@media (min-width: 640px) {
+  .hero__actions { flex-direction: row; }
+  .identificacao__cards { grid-template-columns: 1fr 1fr; }
+  .formatos__grid { grid-template-columns: 1fr 1fr; }
+  .avaliacao-cta { flex-direction: row; align-items: center; justify-content: space-between; }
+  .esp__grid { grid-template-columns: 1fr 1fr; }
+  .testemunhos__grid { grid-template-columns: 1fr 1fr; }
+  .localizacao__acoes { flex-direction: row; }
+  .cta-final__acoes { flex-direction: row; justify-content: center; }
+}
+
+@media (min-width: 900px) {
+  .hero__inner { flex-direction: row; align-items: center; gap: 4rem; }
+  .hero__content { flex: 1; }
+  .hero__visual { flex: 0 0 380px; }
+  .hero__img-wrap img { aspect-ratio: 5/6; }
+  .trust-bar { grid-template-columns: repeat(4,1fr); }
+  .trust-item { border-right: 1px solid var(--borda); border-bottom: none; }
+  .trust-item:last-child { border-right: none; }
+  .identificacao__inner { flex-direction: row; gap: 4rem; }
+  .identificacao__texto { flex: 0 0 280px; }
+  .identificacao__cards { flex: 1; grid-template-columns: 1fr 1fr; }
+  .formatos__grid { grid-template-columns: repeat(3,1fr); }
+  .esp__grid { grid-template-columns: 1fr 1fr; }
+  .avaliacao__inner { flex-direction: row; gap: 4rem; }
+  .avaliacao__intro { flex: 0 0 280px; position: sticky; top: calc(var(--header-h) + 1rem); align-self: flex-start; }
+  .espaco__inner { flex-direction: row; gap: 4rem; align-items: center; }
+  .espaco__galeria { flex: 1; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; }
+  .espaco__principal { grid-column: 1; grid-row: 1 / 3; aspect-ratio: 3/4; }
+  .espaco__texto { flex: 0 0 340px; }
+  .localizacao__inner { flex-direction: row; gap: 3.5rem; align-items: flex-start; }
+  .localizacao__mapa { flex: 1; }
+  .localizacao__info { flex: 0 0 320px; }
+  .sobre__inner { flex-direction: row; gap: 4rem; }
+  .sobre__visual { flex: 0 0 360px; }
+  .contacto__inner { flex-direction: row; gap: 4rem; }
+  .testemunhos__grid { grid-template-columns: repeat(3,1fr); }
+  .como-funciona .passos { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; }
+  .passo { flex-direction: column; align-items: center; text-align: center; border-bottom: none; padding: 0 1.25rem; border-right: 1px solid var(--borda); }
+  .passo:last-child { border-right: none; }
+}
+
+@media (min-width: 1100px) {
+  .hero__visual { flex: 0 0 440px; }
+  .formatos__grid { grid-template-columns: repeat(3,1fr); }
+}
+</style>
+
+<script>
+  // Ano no footer
+  const anoEl = document.getElementById('anoAtual');
+  if (anoEl) anoEl.textContent = String(new Date().getFullYear());
+
+  // Menu hambúrguer
+  const toggle = document.getElementById('menuToggle') as HTMLButtonElement | null;
+  const menu   = document.getElementById('mobileMenu') as HTMLElement | null;
+  if (toggle && menu) {
+    const links = menu.querySelectorAll('a');
+    const open  = () => { toggle.classList.add('active'); toggle.setAttribute('aria-expanded','true'); menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+    const close = () => { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded','false'); menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+    toggle.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
+    links.forEach(l => l.addEventListener('click', close));
+    document.addEventListener('keydown', e => e.key==='Escape' && close());
+    window.addEventListener('resize', () => window.innerWidth >= 1024 && close());
+  }
+
+  // Header shadow
+  const header = document.getElementById('header');
+  if (header) {
+    window.addEventListener('scroll', () => {
+      header.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(47,74,53,.14)' : '';
+    }, { passive: true });
+  }
+
+  // Smooth scroll com offset
+  document.addEventListener('click', (e: Event) => {
+    const target = e.target as HTMLElement;
+    const link = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+    if (!link) return;
+    const id = link.getAttribute('href')?.slice(1);
+    if (!id) return;
+    const el = document.getElementById(id);
+    if (!el) return;
+    e.preventDefault();
+    const offset = (header?.offsetHeight ?? 68) + 16;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+    el.setAttribute('tabindex', '-1');
+    el.focus({ preventScroll: true });
+    el.addEventListener('blur', () => el.removeAttribute('tabindex'), { once: true });
+  });
+
+  // Fade-in IntersectionObserver
+  if ('IntersectionObserver' in window) {
+    const targets = document.querySelectorAll('.fade-in');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).style.transitionDelay = `${(i % 4) * 80}ms`;
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    targets.forEach(el => obs.observe(el));
+  }
+</script>
