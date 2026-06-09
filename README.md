@@ -99,7 +99,7 @@ npm run preview
 
 ## Contactos reais já configurados
 - WhatsApp: +351 969 698 944
-- Email: bernardo.lima93@gmail.com
+- Email: tbl.treinos@gmail.com
 - Instagram: @tbl.treinos
 - Morada: Av. Almirante Gago Coutinho, 1000-015 Lisboa
 
