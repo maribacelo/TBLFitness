@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 
 const distDir = process.env.SEO_DIST ?? 'dist';
-const canonicalUrl = 'https://maribacelo.github.io/TBLFitness/';
+const canonicalUrl = 'https://tblstudio.pt/';
 const sitemapUrl = `${canonicalUrl}sitemap.xml`;
 
 const read = (file) => readFileSync(join(distDir, file), 'utf8');

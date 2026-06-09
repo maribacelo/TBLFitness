@@ -1,7 +1,7 @@
 import { chromium } from '@playwright/test';
 import { existsSync, mkdirSync } from 'node:fs';
 
-const baseUrl = process.env.RESPONSIVE_URL ?? 'http://127.0.0.1:4321/TBLFitness/';
+const baseUrl = process.env.RESPONSIVE_URL ?? 'http://127.0.0.1:4321/';
 const chromePath = process.env.CHROME_PATH
   ?? (existsSync('/usr/bin/google-chrome') ? '/usr/bin/google-chrome' : undefined);
 

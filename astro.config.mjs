@@ -2,8 +2,8 @@ import { defineConfig } from 'astro/config';
 
 export default defineConfig({
   output: 'static',
-  site: 'https://maribacelo.github.io',
-  base: '/TBLFitness/',
+  site: 'https://tblstudio.pt',
+  base: '/',
   build: {
     assets: '_assets',
   },
