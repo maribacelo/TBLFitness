@@ -130,6 +130,10 @@ const run = async () => {
       await page.locator('[data-contexto]').first().click();
       ensureClean(await auditViewport(page, `${name} quiz resultado`));
 
+      await page.locator('#localizacao').scrollIntoViewIfNeeded();
+      await page.locator('#localizacao iframe').waitFor({ state: 'visible' });
+      ensureClean(await auditViewport(page, `${name} localizacao`));
+
       console.log(`ok ${name} ${width}x${height}`);
     } catch (error) {
       const screenshot = `tmp/responsive/${name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.png`;

@@ -6,19 +6,112 @@ interface Props {
 }
 
 const {
-  title = 'Personal Trainer no Areeiro | TBL Studio – Bernardo Lima',
+  title = 'Personal Trainer no Areeiro, Lisboa | TBL Studio – Bernardo Lima',
   description = 'Treino personalizado no Areeiro, Lisboa. Personal Training presencial, online, app e empresas. Bernardo Lima, 13+ anos de experiência. Avaliação inicial disponível.',
 } = Astro.props;
 
 const site = 'https://maribacelo.github.io/TBLFitness';
+const siteUrl = `${site}/`;
 const assetBase = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
   : `${import.meta.env.BASE_URL}/`;
 const assetPath = (file: string) => `${assetBase}images/${file}`;
-const absoluteImage = (file: string) => `${site}/images/${file}`;
+const absoluteImage = (file: string) => `${siteUrl}images/${file}`;
 const ogImage = absoluteImage('foto_sessao_1.jpg');
 const logoImage = assetPath('logo_tbl.jpg');
-const canonicalUrl = `${site}/`;
+const canonicalUrl = siteUrl;
+const businessId = `${siteUrl}#localbusiness`;
+const websiteId = `${siteUrl}#website`;
+const webpageId = `${siteUrl}#webpage`;
+const personId = `${siteUrl}#bernardo-lima`;
+const mapsUrl = 'https://www.google.com/maps/dir/?api=1&destination=Av.%20Alm.%20Gago%20Coutinho%2C%201000-015%20Lisboa%2C%20Portugal';
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: siteUrl,
+      name: 'TBL Studio & Personal Training by Bernardo Lima',
+      inLanguage: 'pt-PT',
+      publisher: { '@id': businessId },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': webpageId,
+      url: siteUrl,
+      name: title,
+      description,
+      inLanguage: 'pt-PT',
+      isPartOf: { '@id': websiteId },
+      about: { '@id': businessId },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: ogImage,
+        width: 900,
+        height: 1200,
+      },
+    },
+    {
+      '@type': ['HealthClub', 'ExerciseGym'],
+      '@id': businessId,
+      name: 'TBL Studio & Personal Training by Bernardo Lima',
+      alternateName: 'TBL Studio',
+      description: 'Serviço de personal training no Areeiro, Lisboa. Presencial, online, app, outdoor e empresas.',
+      url: siteUrl,
+      logo: absoluteImage('logo_tbl.jpg'),
+      image: [
+        absoluteImage('foto_sessao_1.jpg'),
+        absoluteImage('foto_espaco_1.jpg'),
+        absoluteImage('foto_bernardo.jpg'),
+      ],
+      telephone: '+351969698944',
+      email: 'bernardo.lima93@gmail.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. Alm. Gago Coutinho',
+        addressLocality: 'Lisboa',
+        postalCode: '1000-015',
+        addressCountry: 'PT',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 38.74464720458884,
+        longitude: -9.13366005819632,
+      },
+      hasMap: mapsUrl,
+      areaServed: [
+        { '@type': 'City', name: 'Lisboa' },
+        { '@type': 'Neighborhood', name: 'Areeiro' },
+      ],
+      openingHoursSpecification: [
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '07:00', closes: '22:00' },
+        { '@type': 'OpeningHoursSpecification', dayOfWeek: ['Saturday', 'Sunday'], opens: '08:00', closes: '15:00' },
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: 'Formatos de treino',
+        itemListElement: [
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Personal Training Presencial' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Personal Training Online' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Plano por App' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Treino Outdoor' } },
+          { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Ginástica Laboral' } },
+        ],
+      },
+      founder: { '@id': personId },
+      sameAs: ['https://www.instagram.com/tbl.treinos'],
+    },
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: 'Bernardo Lima',
+      jobTitle: 'Personal Trainer',
+      image: absoluteImage('foto_bernardo.jpg'),
+      worksFor: { '@id': businessId },
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -37,6 +130,9 @@ const canonicalUrl = `${site}/`;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="900" />
+    <meta property="og:image:height" content="1200" />
+    <meta property="og:image:alt" content="Bernardo Lima a acompanhar uma sessão de treino personalizado no Areeiro, Lisboa" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_PT" />
@@ -47,11 +143,11 @@ const canonicalUrl = `${site}/`;
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="Bernardo Lima a acompanhar uma sessão de treino personalizado no Areeiro, Lisboa" />
 
     <meta name="theme-color" content="#4A7A2E" />
 
-    <!-- Favicon [SUBSTITUIR pelos ficheiros reais] -->
-    <link rel="icon" type="image/png" href={logoImage} />
+    <link rel="icon" type="image/jpeg" href={logoImage} />
     <link rel="apple-touch-icon" href={logoImage} />
 
     <!-- Fonts -->
@@ -63,39 +159,7 @@ const canonicalUrl = `${site}/`;
     />
 
     <!-- JSON-LD -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "HealthAndBeautyBusiness",
-        "name": "TBL Studio & Personal Training by Bernardo Lima",
-        "description": "Serviço de personal training no Areeiro, Lisboa. Presencial, online, app, outdoor e empresas.",
-        "url": "https://maribacelo.github.io/TBLFitness/",
-        "image": "https://maribacelo.github.io/TBLFitness/images/foto_sessao_1.jpg",
-        "telephone": "+351969698944",
-        "email": "bernardo.lima93@gmail.com",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Av. Almirante Gago Coutinho",
-          "addressLocality": "Lisboa",
-          "postalCode": "1000-015",
-          "addressCountry": "PT"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": "38.7389",
-          "longitude": "-9.1305"
-        },
-        "areaServed": [
-          { "@type": "City", "name": "Lisboa" },
-          { "@type": "Neighborhood", "name": "Areeiro" }
-        ],
-        "openingHoursSpecification": [
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:00", "closes": "22:00" },
-          { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Saturday","Sunday"], "opens": "08:00", "closes": "15:00" }
-        ],
-        "sameAs": ["https://www.instagram.com/tbl.treinos"]
-      }
-    </script>
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   </head>
 
   <body>

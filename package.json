@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "test:seo": "node scripts/seo-audit.mjs",
     "test:responsive": "node scripts/responsive-audit.mjs"
   },
   "dependencies": {

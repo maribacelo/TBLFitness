@@ -19,8 +19,10 @@ const imageMeta = {
   fotoEspaco1: { src: imagePath('foto_espaco_1.jpg'), width: 900, height: 1200 },
   fotoEspaco2: { src: imagePath('foto_espaco_2.jpg'), width: 900, height: 1200 },
   fotoSessao2: { src: imagePath('foto_sessao_2.jpg'), width: 900, height: 1200 },
-  fotoMapa: { src: imagePath('foto_mapa.jpg'), width: 692, height: 600 },
 };
+
+const mapsEmbedUrl = 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3815.4684273861308!2d-9.13366005819632!3d38.74464720458884!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd193323deb1808d%3A0x9d258d8c9c694377!2sTBL%20Studio%20%26%20Personal%20Training%20by%20Bernardo%20Lima!5e0!3m2!1spt-BR!2sbr!4v1780962753804!5m2!1spt-BR!2sbr';
+const mapsDirectionsUrl = 'https://www.google.com/maps/dir/?api=1&destination=Av.%20Alm.%20Gago%20Coutinho%2C%201000-015%20Lisboa%2C%20Portugal';
 ---
 
 <BaseLayout>
@@ -461,14 +463,20 @@ const imageMeta = {
         <h2 id="lc-titulo">No Areeiro, Lisboa.</h2>
         <div class="localizacao__inner">
           <div class="localizacao__mapa">
-            <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer">
-              <OptimizedImage src={imageMeta.fotoMapa.src} alt="Mapa com localização do TBL Studio na Av. Almirante Gago Coutinho, Areeiro" width={imageMeta.fotoMapa.width} height={imageMeta.fotoMapa.height} />
-            </a>
+            <iframe
+              src={mapsEmbedUrl}
+              width="600"
+              height="450"
+              title="Mapa do Google Maps com localização do TBL Studio & Personal Training by Bernardo Lima"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
           <div class="localizacao__info">
             <address>
-              <strong>Av. Almirante Gago Coutinho</strong><br />
-              1000-015 Lisboa · Areeiro
+              <strong>Av. Alm. Gago Coutinho</strong><br />
+              1000-015 Lisboa, Portugal
             </address>
             <div class="localizacao__horarios">
               <strong>Horários</strong>
@@ -480,7 +488,7 @@ const imageMeta = {
               <a href="mailto:bernardo.lima93@gmail.com">✉️ bernardo.lima93@gmail.com</a>
             </div>
             <div class="localizacao__acoes">
-              <a href="https://maps.google.com/?q=PVV9+W7+Lisboa" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+              <a href={mapsDirectionsUrl} target="_blank" rel="noopener noreferrer" class="btn btn--primary">
                 Abrir no Google Maps
               </a>
               <a href="https://wa.me/351969698944?text=Ol%C3%A1%20Bernardo%2C%20gostaria%20de%20agendar%20um%20treino." target="_blank" rel="noopener noreferrer" class="btn btn--outline">
@@ -545,6 +553,65 @@ const imageMeta = {
   </main>
 
   <Footer />
+
+  <script>
+    // Ano no footer
+    const anoEl = document.getElementById('anoAtual');
+    if (anoEl) anoEl.textContent = String(new Date().getFullYear());
+
+    // Menu hambúrguer
+    const toggle = document.getElementById('menuToggle') as HTMLButtonElement | null;
+    const menu   = document.getElementById('mobileMenu') as HTMLElement | null;
+    if (toggle && menu) {
+      const links = menu.querySelectorAll('a');
+      const open  = () => { toggle.classList.add('active'); toggle.setAttribute('aria-expanded','true'); menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
+      const close = () => { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded','false'); menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
+      toggle.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
+      links.forEach(l => l.addEventListener('click', close));
+      document.addEventListener('keydown', e => e.key==='Escape' && close());
+      window.addEventListener('resize', () => window.innerWidth >= 1100 && close());
+    }
+
+    // Header shadow
+    const header = document.getElementById('header');
+    if (header) {
+      window.addEventListener('scroll', () => {
+        header.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(47,74,53,.14)' : '';
+      }, { passive: true });
+    }
+
+    // Smooth scroll com offset
+    document.addEventListener('click', (e: Event) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
+      if (!link) return;
+      const id = link.getAttribute('href')?.slice(1);
+      if (!id) return;
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault();
+      const offset = (header?.offsetHeight ?? 68) + 16;
+      window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+      el.setAttribute('tabindex', '-1');
+      el.focus({ preventScroll: true });
+      el.addEventListener('blur', () => el.removeAttribute('tabindex'), { once: true });
+    });
+
+    // Fade-in IntersectionObserver
+    if ('IntersectionObserver' in window) {
+      const targets = document.querySelectorAll('.fade-in');
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry, i) => {
+          if (entry.isIntersecting) {
+            (entry.target as HTMLElement).style.transitionDelay = `${(i % 4) * 80}ms`;
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08 });
+      targets.forEach(el => obs.observe(el));
+    }
+  </script>
 </BaseLayout>
 
 <style>
@@ -745,7 +812,8 @@ const imageMeta = {
 .localizacao { background: var(--verde-claro); padding-block: 3rem; }
 .localizacao h2 { font-family: var(--serif); font-size: clamp(1.5rem,3vw,2rem); color: var(--verde-esc); margin-bottom: 1.75rem; }
 .localizacao__inner { display: flex; flex-direction: column; gap: 1.5rem; }
-.localizacao__mapa :global(img) { width: 100%; border-radius: var(--radius-lg); border: 1px solid var(--borda); cursor: pointer; }
+.localizacao__mapa { width: 100%; overflow: hidden; border: 1px solid var(--borda); border-radius: var(--radius-lg); background: #dfe8d8; box-shadow: var(--shadow-card); }
+.localizacao__mapa iframe { display: block; width: 100%; min-height: 320px; aspect-ratio: 4 / 3; border: 0; }
 .localizacao__info address { font-size: .9375rem; color: var(--texto); line-height: 1.65; margin-bottom: 1.25rem; }
 .localizacao__info address strong { color: var(--verde-esc); }
 .localizacao__horarios { margin-bottom: 1rem; }
@@ -836,6 +904,7 @@ const imageMeta = {
   .fase-num { width: 2.25rem; height: 2.25rem; }
   .espaco__galeria { grid-template-columns: 1fr; }
   :global(.espaco__principal) { grid-column: auto; }
+  .localizacao__mapa iframe { min-height: 280px; aspect-ratio: 1 / 1; }
   .canal { align-items: flex-start; }
   .canal__badge { display: none; }
 }
@@ -904,62 +973,3 @@ const imageMeta = {
   .hero__img-wrap :global(img) { aspect-ratio: 4/5; }
 }
 </style>
-
-<script>
-  // Ano no footer
-  const anoEl = document.getElementById('anoAtual');
-  if (anoEl) anoEl.textContent = String(new Date().getFullYear());
-
-  // Menu hambúrguer
-  const toggle = document.getElementById('menuToggle') as HTMLButtonElement | null;
-  const menu   = document.getElementById('mobileMenu') as HTMLElement | null;
-  if (toggle && menu) {
-    const links = menu.querySelectorAll('a');
-    const open  = () => { toggle.classList.add('active'); toggle.setAttribute('aria-expanded','true'); menu.classList.add('open'); menu.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden'; };
-    const close = () => { toggle.classList.remove('active'); toggle.setAttribute('aria-expanded','false'); menu.classList.remove('open'); menu.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
-    toggle.addEventListener('click', () => menu.classList.contains('open') ? close() : open());
-    links.forEach(l => l.addEventListener('click', close));
-    document.addEventListener('keydown', e => e.key==='Escape' && close());
-    window.addEventListener('resize', () => window.innerWidth >= 1100 && close());
-  }
-
-  // Header shadow
-  const header = document.getElementById('header');
-  if (header) {
-    window.addEventListener('scroll', () => {
-      header.style.boxShadow = window.scrollY > 10 ? '0 4px 24px rgba(47,74,53,.14)' : '';
-    }, { passive: true });
-  }
-
-  // Smooth scroll com offset
-  document.addEventListener('click', (e: Event) => {
-    const target = e.target as HTMLElement;
-    const link = target.closest('a[href^="#"]') as HTMLAnchorElement | null;
-    if (!link) return;
-    const id = link.getAttribute('href')?.slice(1);
-    if (!id) return;
-    const el = document.getElementById(id);
-    if (!el) return;
-    e.preventDefault();
-    const offset = (header?.offsetHeight ?? 68) + 16;
-    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
-    el.setAttribute('tabindex', '-1');
-    el.focus({ preventScroll: true });
-    el.addEventListener('blur', () => el.removeAttribute('tabindex'), { once: true });
-  });
-
-  // Fade-in IntersectionObserver
-  if ('IntersectionObserver' in window) {
-    const targets = document.querySelectorAll('.fade-in');
-    const obs = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          (entry.target as HTMLElement).style.transitionDelay = `${(i % 4) * 80}ms`;
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08 });
-    targets.forEach(el => obs.observe(el));
-  }
-</script>
